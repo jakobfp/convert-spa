@@ -38,7 +38,7 @@ code {
       monospace;
 }
 
-h1, h2, p, ul, li {
+h1, h2, h5, p, ul, li {
     font-family: 'HTWBerlin';
 }
 ul.header li {
