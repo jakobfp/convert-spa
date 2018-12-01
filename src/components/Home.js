@@ -1,6 +1,15 @@
 import React, { Component } from "react";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
+const download_file = (url, name) => {
+  const link = document.createElement('a');
+  link.href = url;
+  link.setAttribute('download', name);
+  document.body.appendChild(link);
+  link.click();
+  document.body.removeChild(link);
+}
+
 class Home extends Component {
 
   constructor(props) {
@@ -47,13 +56,8 @@ class Home extends Component {
     .then(response => response.json())
     .then(response => {
       if(response.success === true){
-        this.setState({download_url : `http://localhost:5000/api/download?file=${response.file_path}`})
-        const link = document.createElement('a');
-        link.href = this.state.download_url;
-        link.setAttribute('download', response.file_name);
-        document.body.appendChild(link);
-        link.click();
-        document.body.removeChild(link);
+        this.setState({download_url : `http://localhost:5000/api/download?file=${response.file_path}`});
+        download_file(this.state.download_url, response.file_name);
       } else {
         console.log(response.error);
       }
