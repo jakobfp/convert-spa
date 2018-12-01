@@ -10,22 +10,8 @@ class Home extends Component {
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleDesignChange = this.handleDesignChange.bind(this);
     this.handleFileChange = this.handleFileChange.bind(this);
-    this.handleDownload = this.handleDownload.bind(this);
 
     this.fileInput = React.createRef();
-  }
-
-  handleSubmit(event){
-    fetch(`http://localhost:5000/api/convert?file=${this.state.filename}&design=${this.state.design}`, {
-      method: 'GET'
-    })
-    .then(response => response.json())
-    .then(response => {
-      if(response === true)
-        this.setState({download: <form onSubmit={this.handleDownload}><h5>4. Download</h5><input type="submit" value="Download"/></form>});
-      else
-        this.setState({download: `${response.error}`});
-    });
   }
 
   handleDesignChange(event){
@@ -44,16 +30,34 @@ class Home extends Component {
     })
     .then(response => response.json())
     .then(response => {
-      if(response === true)
+      if(response.success === true){
         this.setState({uploaded: <FontAwesomeIcon icon="check-square" />});
-      else
+        this.setState({uploaded_file_path: response.file_path});
+      }
+      else {
         this.setState({uploaded: `${response.error}`});
+      }
     });
   }
 
-  handleDownload(event){
-    // todo : download 
-    console.log("download...");
+  handleSubmit(event){
+    fetch(`http://localhost:5000/api/convert?file=${this.state.uploaded_file_path}&design=${this.state.design}`, {
+      method: 'GET'
+    })
+    .then(response => response.json())
+    .then(response => {
+      if(response.success === true){
+        this.setState({download_url : `http://localhost:5000/api/download?file=${response.file_path}`})
+        const link = document.createElement('a');
+        link.href = this.state.download_url;
+        link.setAttribute('download', response.file_name);
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+      } else {
+        console.log(response.error);
+      }
+    });
   }
 
   render() {
@@ -69,10 +73,9 @@ class Home extends Component {
             <option value=''>select a design</option>
             <option value="htwberlin">HTW Berlin</option>
           </select>
-          <h5>3. Convert</h5>
+          <h5>3. Convert & Download</h5>
           <input type="submit" value="Do!" />
         </form>
-        {this.state.download}
       </div>
     );
   }
