@@ -70,7 +70,7 @@ class Home extends Component {
     else {
       this.setState({isLoading: true});
       const convertParams = `file=${this.state.uploaded_file_path}&design=${this.state.design}`;
-      fetch(api.convert+convertParams, {
+      fetch(api.convert_tex+convertParams, {
         method: 'GET'
       })
       .then(response => response.json())
