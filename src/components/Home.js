@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import api from './api-config.js';
 
 const download_file = (url, name) => {
   const link = document.createElement('a');
@@ -14,7 +15,14 @@ class Home extends Component {
 
   constructor(props) {
     super(props);
-    this.state = {uploaded: <FontAwesomeIcon icon="times" />, filename: "", download: ""};
+    this.state = {
+      uploaded: <FontAwesomeIcon icon="times" />,
+      filename: "",
+      download_url: "",
+      design: "",
+      uploaded_file_path: "",
+      error: ""
+    };
 
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleDesignChange = this.handleDesignChange.bind(this);
@@ -33,7 +41,7 @@ class Home extends Component {
     const data = new FormData();
     data.append('file', this.fileInput.current.files[0]);
 
-    fetch('http://localhost:5000/api/upload', {
+    fetch(api.upload, {
       method: 'POST',
       body: data
     })
@@ -45,12 +53,14 @@ class Home extends Component {
       }
       else {
         this.setState({uploaded: `${response.error}`});
+        this.setState({error: response.error});
       }
     });
   }
 
   handleSubmit(event){
-    fetch(`http://localhost:5000/api/convert?file=${this.state.uploaded_file_path}&design=${this.state.design}`, {
+    const params = `file=${this.state.uploaded_file_path}&design=${this.state.design}`;
+    fetch(api.convert+params, {
       method: 'GET'
     })
     .then(response => response.json())
@@ -59,7 +69,7 @@ class Home extends Component {
         this.setState({download_url : `http://localhost:5000/api/download?file=${response.file_path}`});
         download_file(this.state.download_url, response.file_name);
       } else {
-        console.log(response.error);
+        this.setState({error: response.error});
       }
     });
   }
