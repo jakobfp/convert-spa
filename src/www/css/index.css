@@ -71,3 +71,20 @@ ul.header li a {
 .content li {
     margin-bottom: 10px;
 }
+
+#error {
+  background-color: rgba(255, 0, 0, 0.5);
+}
+
+#loading-spinner {
+  background-color: rgba(255, 255, 255, 0.5);
+  width: 50%;
+  height: 35%;
+  position: absolute;
+  z-index: 10;
+}
+
+.sk-wave > div {
+  width: 20px !important;
+  margin: 15px !important ;
+}
