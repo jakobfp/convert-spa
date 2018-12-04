@@ -1,3 +1,11 @@
+# HTW CorDes
+
+Single-Page-Application that converts Latex and *(soon)* Word Documents to PDF using the HTW Berlin corporate identity.
+
+The application communicates with a [RestAPI](https://github.com/jakobfp/pandocwrapper-api) that gives an interface to a [Pandoc-Wrapper](https://github.com/jakobfp/pandocwrapper) written for this application.
+
+## Bootstrapped from `$ npm create-react-app`
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
