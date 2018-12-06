@@ -20,6 +20,7 @@ class Home extends Component {
     this.state = {
       uploaded: <FontAwesomeIcon icon="times" />,
       filename: "",
+      filetype: "",
       download_url: "",
       design: "",
       uploaded_file_path: "",
@@ -54,6 +55,8 @@ class Home extends Component {
       if(response.success === true){
         this.setState({uploaded: <FontAwesomeIcon icon="check-square" />});
         this.setState({uploaded_file_path: response.file_path});
+        this.setState({filetype: response.file_type});
+        console.log(this.state);
       }
       else {
         this.setState({error: response.error});
@@ -65,12 +68,12 @@ class Home extends Component {
     this.setState({error: ""});
     if(this.state.design === ""){
       this.setState({error: "no design select, please select one!"});
-
     }
     else {
-      this.setState({isLoading: true});
+      const api_call = this.state.filetype === 'tex' ? api.convert_tex : api.convert_docx;
       const convertParams = `file=${this.state.uploaded_file_path}&design=${this.state.design}`;
-      fetch(api.convert_tex+convertParams, {
+      this.setState({isLoading: true});
+      fetch(api_call+convertParams, {
         method: 'GET'
       })
       .then(response => response.json())
@@ -82,6 +85,7 @@ class Home extends Component {
           this.setState({isLoading: false});
         } else {
           this.setState({error: response.error});
+          this.setState({isLoading: false});
         }
       });
       this.clearForm();
@@ -91,6 +95,7 @@ class Home extends Component {
   clearForm(){
     this.setState({
       filename: "",
+      filetype: "",
       design: "",
       uploaded: <FontAwesomeIcon icon="times" />,
       download_url: "",
@@ -103,13 +108,16 @@ class Home extends Component {
   render() {
     return (
       <div>
-        {this.state.error != "" ? (<div id="error"><p>{this.state.error}</p></div>) : (<p></p>)}
+        {this.state.error !== "" ? (<div id="error"><p>{this.state.error}</p></div>) : (<p></p>)}
         <h2>HELLO</h2>
         <p>With this Application you can convert Latex articles and presentations as well as Word documents in the corporate design of HTW Berlin.</p>
         {this.state.isLoading ? (<Spinner id="loading-spinner" name="wave" fadeIn="none"/>) : (<p></p>)}
         <form onSubmit={this.handleSubmit}>
           <h5>1. Upload file</h5>
           <input type="file" ref={this.fileInput} value={this.state.filename} onChange={this.handleFileChange}/> {this.state.uploaded}
+          {this.state.filetype === 'tex' ?
+            (<div><h6>1.1 Upload .bib - file</h6> <h6>1.2 Upload images</h6></div>)
+            : (<p></p>)}
           <h5>2. Select design</h5>
           <select value={this.state.design} onChange={this.handleDesignChange}>
             <option value=''>select a design</option>
