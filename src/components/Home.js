@@ -2,6 +2,9 @@ import React, { Component } from "react";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import api from './api-config.js';
 
+import Word from "./Word.js"
+import Latex from "./Latex.js"
+
 var Spinner = require('react-spinkit');
 
 const download_file = (url, name) => {
@@ -25,14 +28,32 @@ class Home extends Component {
       design: "",
       uploaded_file_path: "",
       error: "",
-      isLoading: false
+      isLoading: false,
+      bibname: "",
+      bibFile: ""
     };
 
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleDesignChange = this.handleDesignChange.bind(this);
     this.handleFileChange = this.handleFileChange.bind(this);
+    this.setBibFileName = this.setBibFileName.bind(this);
+    this.setBibFile = this.setBibFile.bind(this);
+    this.setError = this.setError.bind(this);
 
     this.fileInput = React.createRef();
+    this.bibInput = React.createRef();
+  }
+
+  setBibFile(bibFile){
+    this.setState({bibFile: bibFile});
+  }
+  
+  setBibFileName(bibname){
+    this.setState({bibname: bibname});
+  }
+
+  setError(error){
+    this.setState({error: error});
   }
 
   handleDesignChange(event){
@@ -71,9 +92,13 @@ class Home extends Component {
     }
     else {
       const api_call = this.state.filetype === 'tex' ? api.convert_tex : api.convert_docx;
-      const convertParams = `file=${this.state.uploaded_file_path}&design=${this.state.design}`;
+      var convertParams = `file=${this.state.uploaded_file_path}&design=${this.state.design}`;
+      if (this.state.bibFile !== ""){
+        convertParams += `&bib_file=${this.state.bibFile}`
+      }
+      console.log(convertParams);
       this.setState({isLoading: true});
-      fetch(api_call+convertParams, {
+      fetch(api_call + convertParams, {
         method: 'GET'
       })
       .then(response => response.json())
@@ -100,9 +125,12 @@ class Home extends Component {
       uploaded: <FontAwesomeIcon icon="times" />,
       download_url: "",
       uploaded_file_path: "",
-      error: ""
+      error: "",
+      bibname: "",
+      bibFile: ""
     });
     this.fileInput = React.createRef();
+    this.bibInput = React.createRef();
   }
 
   render() {
@@ -112,20 +140,12 @@ class Home extends Component {
         <h2>HELLO</h2>
         <p>With this Application you can convert Latex articles and presentations as well as Word documents in the corporate design of HTW Berlin.</p>
         {this.state.isLoading ? (<Spinner id="loading-spinner" name="wave" fadeIn="none"/>) : (<p></p>)}
-        <form onSubmit={this.handleSubmit}>
-          <h5>1. Upload file</h5>
-          <input type="file" ref={this.fileInput} value={this.state.filename} onChange={this.handleFileChange}/> {this.state.uploaded}
-          {this.state.filetype === 'tex' ?
-            (<div><h6>1.1 Upload .bib - file</h6> <h6>1.2 Upload images</h6></div>)
-            : (<p></p>)}
-          <h5>2. Select design</h5>
-          <select value={this.state.design} onChange={this.handleDesignChange}>
-            <option value=''>select a design</option>
-            <option value="htwberlin">HTW Berlin</option>
-          </select>
-          <h5>3. Convert & Download</h5>
-          <input type="submit" value="Do!" />
-        </form>
+        <h5>1. Upload file</h5>
+        <input type="file" ref={this.fileInput} value={this.state.filename} onChange={this.handleFileChange}/> {this.state.uploaded}
+        {this.state.filetype === 'docx' ?
+          (<Word state={this.state} handleSubmit={this.handleSubmit} handleDesignChange={this.handleDesignChange} setError={this.setError}/>) :
+          (<Latex state={this.state} handleSubmit={this.handleSubmit} handleDesignChange={this.handleDesignChange} setError={this.setError} setBibFile={this.setBibFile} setBibFileName={this.setBibFileName} bibInput={this.bibInput}/>)
+        }
       </div>
     );
   }
