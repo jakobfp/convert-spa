@@ -49,7 +49,7 @@ class Latex extends Component {
           <h6>1.1. Upload bib-File</h6>
           <input type="file" ref={this.props.bibInput} value={this.props.state.bibname} onChange={this.handleBibFileChange}/>
           <h6>1.2. Upload images - Drag & Drop here</h6>
-          <ImageDropzone />
+          <ImageDropzone state={this.props.state} setError={this.props.setError}/>
           <h4>2. Select design</h4>
           <select value={this.props.state.design} onChange={this.props.handleDesignChange}>
             <option value=''>select a design</option>

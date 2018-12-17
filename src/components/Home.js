@@ -30,7 +30,8 @@ class Home extends Component {
       error: "",
       isLoading: false,
       bibname: "",
-      bibFile: ""
+      bibFile: "",
+      images: []
     };
 
     this.handleSubmit = this.handleSubmit.bind(this);

@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import api from './api-config.js';
+
 import Dropzone from 'react-dropzone';
 const styled = require('styled-components').default;
 
@@ -14,6 +16,8 @@ const getColor = (props) => {
 };
 
 const Container = styled.div`
+  font-size: 10px;
+  padding: 5px;
   width: 50px;
   height: 50px;
   border-width: 2px;
@@ -44,8 +48,28 @@ class ImageDropzone extends Component {
   }
 
   onDrop = async(acceptedFiles, rejectedFiles) => {
-    await this.setState({files: [...this.state.files, ...acceptedFiles]});
     await this.setState({rejected: [...this.state.rejected, ...rejectedFiles]});
+
+    acceptedFiles.map((file) => {
+      const data = new FormData();
+      data.append('file', file);
+      data.append('path', this.props.state.uploaded_file_path);
+
+      fetch(api.upload, {
+        method: 'POST',
+        body: data
+      })
+      .then(response => response.json())
+      .then(response => {
+        if(response.success === true){
+          this.setState({files: [...this.state.files, file]});
+        }
+        else {
+          this.props.setError(response.error);
+        }
+      });
+      return 0;
+    });
   }
 
   render() {
@@ -61,6 +85,7 @@ class ImageDropzone extends Component {
               isDragActive={isDragActive}
               isDragReject={isDragReject}
               {...getRootProps()}>
+              <p>Drop images...</p>
             </Container>
             )}
           </Dropzone>
