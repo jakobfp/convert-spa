@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import api from './api-config.js';
 
 
+import ImageDropzone from "./ImageDropzone.js"
+
 class Latex extends Component {
   constructor(props){
     super(props);
@@ -47,7 +49,7 @@ class Latex extends Component {
           <h6>1.1. Upload bib-File</h6>
           <input type="file" ref={this.props.bibInput} value={this.props.state.bibname} onChange={this.handleBibFileChange}/>
           <h6>1.2. Upload images</h6>
-
+          <ImageDropzone />
           <h5>2. Select design</h5>
           <select value={this.props.state.design} onChange={this.props.handleDesignChange}>
             <option value=''>select a design</option>
