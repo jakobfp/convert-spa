@@ -40,6 +40,7 @@ class Home extends Component {
     this.setBibFileName = this.setBibFileName.bind(this);
     this.setBibFile = this.setBibFile.bind(this);
     this.setError = this.setError.bind(this);
+    this.setImages = this.setImages.bind(this);
 
     this.fileInput = React.createRef();
     this.bibInput = React.createRef();
@@ -55,6 +56,10 @@ class Home extends Component {
 
   setError(error){
     this.setState({error: error});
+  }
+
+  setImages(image){
+    this.setState({images: [...this.state.images, image]})
   }
 
   handleDesignChange(event){
@@ -128,7 +133,8 @@ class Home extends Component {
       uploaded_file_path: "",
       error: "",
       bibname: "",
-      bibFile: ""
+      bibFile: "",
+      images: []
     });
     this.fileInput = React.createRef();
     this.bibInput = React.createRef();
@@ -145,7 +151,7 @@ class Home extends Component {
         <input type="file" ref={this.fileInput} value={this.state.filename} onChange={this.handleFileChange}/> {this.state.uploaded}
         {this.state.filetype === 'docx' ?
           (<Word state={this.state} handleSubmit={this.handleSubmit} handleDesignChange={this.handleDesignChange} setError={this.setError}/>) :
-          (<Latex state={this.state} handleSubmit={this.handleSubmit} handleDesignChange={this.handleDesignChange} setError={this.setError} setBibFile={this.setBibFile} setBibFileName={this.setBibFileName} bibInput={this.bibInput}/>)
+          (<Latex state={this.state} handleSubmit={this.handleSubmit} handleDesignChange={this.handleDesignChange} setError={this.setError} setBibFile={this.setBibFile} setBibFileName={this.setBibFileName} bibInput={this.bibInput} setImages={this.setImages}/>)
         }
       </div>
     );

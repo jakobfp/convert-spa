@@ -42,7 +42,6 @@ class ImageDropzone extends Component {
   constructor(props){
     super(props);
     this.state = {
-      files: [],
       rejected: []
     };
   }
@@ -62,7 +61,7 @@ class ImageDropzone extends Component {
       .then(response => response.json())
       .then(response => {
         if(response.success === true){
-          this.setState({files: [...this.state.files, file]});
+          this.props.setImages(file);
         }
         else {
           this.props.setError(response.error);
@@ -93,7 +92,7 @@ class ImageDropzone extends Component {
         <aside>
           <UploadedList>
             {
-              this.state.files.map(f => <UploadedListElement key={f.name}>{f.name} - {f.size} bytes</UploadedListElement>)
+              this.props.state.images.map(f => <UploadedListElement key={f.name}>{f.name} - {f.size} bytes</UploadedListElement>)
             }
           </UploadedList>
         </aside>
