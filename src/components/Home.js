@@ -47,7 +47,7 @@ class Home extends Component {
   setBibFile(bibFile){
     this.setState({bibFile: bibFile});
   }
-  
+
   setBibFileName(bibname){
     this.setState({bibname: bibname});
   }
@@ -137,10 +137,10 @@ class Home extends Component {
     return (
       <div>
         {this.state.error !== "" ? (<div id="error"><p>{this.state.error}</p></div>) : (<p></p>)}
-        <h2>HELLO</h2>
+        <h2>HTW Corporate Identity Converter</h2>
         <p>With this Application you can convert Latex articles and presentations as well as Word documents in the corporate design of HTW Berlin.</p>
         {this.state.isLoading ? (<Spinner id="loading-spinner" name="wave" fadeIn="none"/>) : (<p></p>)}
-        <h5>1. Upload file</h5>
+        <h4>1. Upload file</h4>
         <input type="file" ref={this.fileInput} value={this.state.filename} onChange={this.handleFileChange}/> {this.state.uploaded}
         {this.state.filetype === 'docx' ?
           (<Word state={this.state} handleSubmit={this.handleSubmit} handleDesignChange={this.handleDesignChange} setError={this.setError}/>) :

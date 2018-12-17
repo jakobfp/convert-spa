@@ -48,14 +48,14 @@ class Latex extends Component {
         <form onSubmit={this.props.handleSubmit}>
           <h6>1.1. Upload bib-File</h6>
           <input type="file" ref={this.props.bibInput} value={this.props.state.bibname} onChange={this.handleBibFileChange}/>
-          <h6>1.2. Upload images</h6>
+          <h6>1.2. Upload images - Drag & Drop here</h6>
           <ImageDropzone />
-          <h5>2. Select design</h5>
+          <h4>2. Select design</h4>
           <select value={this.props.state.design} onChange={this.props.handleDesignChange}>
             <option value=''>select a design</option>
             <option value="htwberlin">HTW Berlin</option>
           </select>
-          <h5>3. Convert & Download</h5>
+          <h4>3. Convert & Download</h4>
           <input type="submit" value="Do!" />
         </form>
       </div>

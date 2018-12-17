@@ -7,12 +7,12 @@ class Word extends Component {
     return(
       <div>
         <form onSubmit={this.props.handleSubmit}>
-          <h5>2. Select design</h5>
+          <h4>2. Select design</h4>
           <select value={this.props.state.design} onChange={this.props.handleDesignChange}>
             <option value=''>select a design</option>
             <option value="htwberlin">HTW Berlin</option>
           </select>
-          <h5>3. Convert & Download</h5>
+          <h4>3. Convert & Download</h4>
           <input type="submit" value="Do!" />
         </form>
       </div>
