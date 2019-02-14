@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 
 
-class Word extends Component {
+class TextDoc extends Component {
 
   render() {
     return(
@@ -20,4 +20,4 @@ class Word extends Component {
   }
 }
 
-export default Word;
+export default TextDoc;

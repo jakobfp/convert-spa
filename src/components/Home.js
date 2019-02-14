@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import api from './api-config.js';
 
-import Word from "./Word.js"
+import TextDoc from "./TextDoc.js"
 import Latex from "./Latex.js"
 
 import {Circle} from 'better-react-spinkit'
@@ -97,7 +97,8 @@ class Home extends Component {
       this.setState({error: "no design select, please select one!"});
     }
     else {
-      const api_call = this.state.filetype === 'tex' ? api.convert_tex : api.convert_docx;
+      const api_call = api[this.state.filetype];
+      console.log(api['convert_tex']);
       var convertParams = `file=${this.state.uploaded_file_path}&design=${this.state.design}`;
       if (this.state.bibFile !== ""){
         convertParams += `&bib_file=${this.state.bibFile}`
@@ -149,9 +150,9 @@ class Home extends Component {
         {this.state.isLoading ? (<div id="loading-spinner"><div className="center-circle"><Circle size={100}/></div></div>) : (<p></p>)}
         <h4>1. Upload file</h4>
         <input type="file" ref={this.fileInput} value={this.state.filename} onChange={this.handleFileChange}/> {this.state.uploaded}
-        {this.state.filetype === 'docx' ?
-          (<Word state={this.state} handleSubmit={this.handleSubmit} handleDesignChange={this.handleDesignChange} setError={this.setError}/>) :
-          (<Latex state={this.state} handleSubmit={this.handleSubmit} handleDesignChange={this.handleDesignChange} setError={this.setError} setBibFile={this.setBibFile} setBibFileName={this.setBibFileName} bibInput={this.bibInput} setImages={this.setImages}/>)
+        {this.state.filetype === 'tex' ?
+          (<Latex state={this.state} handleSubmit={this.handleSubmit} handleDesignChange={this.handleDesignChange} setError={this.setError} setBibFile={this.setBibFile} setBibFileName={this.setBibFileName} bibInput={this.bibInput} setImages={this.setImages}/>) :
+          (<TextDoc state={this.state} handleSubmit={this.handleSubmit} handleDesignChange={this.handleDesignChange} setError={this.setError}/>)
         }
       </div>
     );
