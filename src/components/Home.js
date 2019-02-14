@@ -5,7 +5,7 @@ import api from './api-config.js';
 import Word from "./Word.js"
 import Latex from "./Latex.js"
 
-var Spinner = require('react-spinkit');
+import {Circle} from 'better-react-spinkit'
 
 const download_file = (url, name) => {
   const link = document.createElement('a');
@@ -146,7 +146,7 @@ class Home extends Component {
         {this.state.error !== "" ? (<div id="error"><p>{this.state.error}</p></div>) : (<p></p>)}
         <h2>HTW Corporate Identity Converter</h2>
         <p>With this Application you can convert Latex articles and presentations as well as Word documents in the corporate design of HTW Berlin.</p>
-        {this.state.isLoading ? (<Spinner id="loading-spinner" name="wave" fadeIn="none"/>) : (<p></p>)}
+        {this.state.isLoading ? (<div id="loading-spinner"><div className="center-circle"><Circle size={100}/></div></div>) : (<p></p>)}
         <h4>1. Upload file</h4>
         <input type="file" ref={this.fileInput} value={this.state.filename} onChange={this.handleFileChange}/> {this.state.uploaded}
         {this.state.filetype === 'docx' ?
