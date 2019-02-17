@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import api from './api-config.js';
 
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 import ImageDropzone from "./ImageDropzone.js"
 
@@ -9,7 +10,8 @@ class Latex extends Component {
     super(props);
 
     this.state = {
-      uploaded_bib_file_path: ""
+      uploaded_bib: <FontAwesomeIcon icon="times" />,
+      bibname: ""
     }
 
     this.handleBibFileChange = this.handleBibFileChange.bind(this);
@@ -17,12 +19,13 @@ class Latex extends Component {
   }
 
   handleBibFileChange(event){
-    this.props.setBibFileName(event.target.value);
+    this.setState({bibname: event.target.value});
     this.props.setError("");
+
 
     const data = new FormData();
     data.append('file', this.props.bibInput.current.files[0]);
-    data.append('path', this.props.state.uploaded_file_path);
+    data.append('path', this.props.uploaded_file_path);
 
     console.log(data.getAll('path'));
 
@@ -33,8 +36,8 @@ class Latex extends Component {
     .then(response => response.json())
     .then(response => {
       if(response.success === true){
-        this.setState({uploaded_bib_file_path: response.file_path});
-        this.props.setBibFile(this.state.uploaded_bib_file_path);
+        this.setState({uploaded_bib: <FontAwesomeIcon icon="check-square" />});
+        this.props.setBibFile(response.file_path);
       }
       else {
         this.props.setError(response.error);
@@ -45,19 +48,10 @@ class Latex extends Component {
   render() {
     return(
       <div>
-        <form onSubmit={this.props.handleSubmit}>
-          <h6>1.1. Upload bib-File</h6>
-          <input type="file" ref={this.props.bibInput} value={this.props.state.bibname} onChange={this.handleBibFileChange}/>
-          <h6>1.2. Upload images - Drag & Drop here</h6>
-          <ImageDropzone state={this.props.state} setError={this.props.setError} setImages={this.props.setImages}/>
-          <h4>2. Select design</h4>
-          <select value={this.props.state.design} onChange={this.props.handleDesignChange}>
-            <option value=''>select a design</option>
-            <option value="htwberlin">HTW Berlin</option>
-          </select>
-          <h4>3. Convert & Download</h4>
-          <input type="submit" value="Do!" />
-        </form>
+        <h6>1.1. Upload bib-File</h6>
+        <input type="file" ref={this.props.bibInput} value={this.state.bibname} onChange={this.handleBibFileChange}/> {this.state.uploaded_bib}
+        <h6>1.2. Upload images - Drag & Drop here</h6>
+        <ImageDropzone images={this.props.images} uploaded_file_path={this.props.uploaded_file_path} setError={this.props.setError} setImages={this.props.setImages}/>
       </div>
     );
   }

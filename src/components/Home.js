@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import api from './api-config.js';
 
-import TextDoc from "./TextDoc.js"
 import Latex from "./Latex.js"
 
 import {Circle} from 'better-react-spinkit'
@@ -29,7 +28,6 @@ class Home extends Component {
       uploaded_file_path: "",
       error: "",
       isLoading: false,
-      bibname: "",
       bibFile: "",
       images: []
     };
@@ -37,7 +35,6 @@ class Home extends Component {
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleDesignChange = this.handleDesignChange.bind(this);
     this.handleFileChange = this.handleFileChange.bind(this);
-    this.setBibFileName = this.setBibFileName.bind(this);
     this.setBibFile = this.setBibFile.bind(this);
     this.setError = this.setError.bind(this);
     this.setImages = this.setImages.bind(this);
@@ -48,10 +45,6 @@ class Home extends Component {
 
   setBibFile(bibFile){
     this.setState({bibFile: bibFile});
-  }
-
-  setBibFileName(bibname){
-    this.setState({bibname: bibname});
   }
 
   setError(error){
@@ -98,12 +91,10 @@ class Home extends Component {
     }
     else {
       const api_call = api[this.state.filetype];
-      console.log(api['convert_tex']);
       var convertParams = `file=${this.state.uploaded_file_path}&design=${this.state.design}`;
       if (this.state.bibFile !== ""){
         convertParams += `&bib_file=${this.state.bibFile}`
       }
-      console.log(convertParams);
       this.setState({isLoading: true});
       fetch(api_call + convertParams, {
         method: 'GET'
@@ -133,7 +124,6 @@ class Home extends Component {
       download_url: "",
       uploaded_file_path: "",
       error: "",
-      bibname: "",
       bibFile: "",
       images: []
     });
@@ -150,10 +140,20 @@ class Home extends Component {
         {this.state.isLoading ? (<div id="loading-spinner"><div className="center-circle"><Circle size={100}/></div></div>) : (<p></p>)}
         <h4>1. Upload file</h4>
         <input type="file" ref={this.fileInput} value={this.state.filename} onChange={this.handleFileChange}/> {this.state.uploaded}
+        <Latex images={this.state.images} uploaded_file_path={this.state.uploaded_file_path} setError={this.setError} setBibFile={this.setBibFile} bibInput={this.bibInput} setImages={this.setImages}/>
         {this.state.filetype === 'tex' ?
-          (<Latex state={this.state} handleSubmit={this.handleSubmit} handleDesignChange={this.handleDesignChange} setError={this.setError} setBibFile={this.setBibFile} setBibFileName={this.setBibFileName} bibInput={this.bibInput} setImages={this.setImages}/>) :
-          (<TextDoc state={this.state} handleSubmit={this.handleSubmit} handleDesignChange={this.handleDesignChange} setError={this.setError}/>)
+          (<Latex images={this.state.images} uploaded_file_path={this.state.uploaded_file_path} setError={this.setError} setBibFile={this.setBibFile} bibInput={this.bibInput} setImages={this.setImages}/>) :
+          (<p></p>)
         }
+        <form onSubmit={this.handleSubmit}>
+          <h4>2. Select design</h4>
+          <select value={this.state.design} onChange={this.handleDesignChange}>
+            <option value=''>select a design</option>
+            <option value="htwberlin">HTW Berlin</option>
+          </select>
+          <h4>3. Convert & Download</h4>
+          <input type="submit" value="Do!" />
+        </form>
       </div>
     );
   }

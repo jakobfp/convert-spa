@@ -18,7 +18,7 @@ const getColor = (props) => {
 const Container = styled.div`
   font-size: 10px;
   padding: 5px;
-  width: 50px;
+  width: 200px;
   height: 50px;
   border-width: 2px;
   border-radius: 5px;
@@ -52,7 +52,7 @@ class ImageDropzone extends Component {
     acceptedFiles.map((file) => {
       const data = new FormData();
       data.append('file', file);
-      data.append('path', this.props.state.uploaded_file_path);
+      data.append('path', this.props.uploaded_file_path);
 
       fetch(api.upload, {
         method: 'POST',
@@ -84,7 +84,7 @@ class ImageDropzone extends Component {
               isDragActive={isDragActive}
               isDragReject={isDragReject}
               {...getRootProps()}>
-              <p>Drop images...</p>
+              <p>Drop images here...</p>
             </Container>
             )}
           </Dropzone>
@@ -92,7 +92,7 @@ class ImageDropzone extends Component {
         <aside>
           <UploadedList>
             {
-              this.props.state.images.map(f => <UploadedListElement key={f.name}>{f.name} - {f.size} bytes</UploadedListElement>)
+              this.props.images.map(f => <UploadedListElement key={f.name}>{f.name} - {f.size} bytes</UploadedListElement>)
             }
           </UploadedList>
         </aside>
