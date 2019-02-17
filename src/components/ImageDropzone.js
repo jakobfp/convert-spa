@@ -84,7 +84,7 @@ class ImageDropzone extends Component {
               isDragActive={isDragActive}
               isDragReject={isDragReject}
               {...getRootProps()}>
-              <p>Drop images here...</p>
+              <p>Drop images (or pdfs) here...</p>
             </Container>
             )}
           </Dropzone>
