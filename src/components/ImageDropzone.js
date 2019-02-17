@@ -96,6 +96,11 @@ class ImageDropzone extends Component {
             }
           </UploadedList>
         </aside>
+        <div>
+          <p>
+          <i> Note: Make sure the paths to graphics (included in your Latex-file) are set to only the name of the graphic itself.</i>
+          </p>
+        </div>
       </section>
     );
   }
