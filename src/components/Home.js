@@ -140,7 +140,6 @@ class Home extends Component {
         {this.state.isLoading ? (<div id="loading-spinner"><div className="center-circle"><Circle size={100}/></div></div>) : (<p></p>)}
         <h4>1. Upload file</h4>
         <input type="file" ref={this.fileInput} value={this.state.filename} onChange={this.handleFileChange}/> {this.state.uploaded}
-        <Latex images={this.state.images} uploaded_file_path={this.state.uploaded_file_path} setError={this.setError} setBibFile={this.setBibFile} bibInput={this.bibInput} setImages={this.setImages}/>
         {this.state.filetype === 'tex' ?
           (<Latex images={this.state.images} uploaded_file_path={this.state.uploaded_file_path} setError={this.setError} setBibFile={this.setBibFile} bibInput={this.bibInput} setImages={this.setImages}/>) :
           (<p></p>)
