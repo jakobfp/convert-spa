@@ -36,8 +36,10 @@ class MarkdownToBeamer extends Component {
     }
     this.saveSlide = this.saveSlide.bind(this);
     this.editSlide = this.editSlide.bind(this);
+    this.deleteSlide = this.deleteSlide.bind(this);
     this.saveTitleSlide = this.saveTitleSlide.bind(this);
     this.editTitleSlide = this.editTitleSlide.bind(this);
+    this.deleteTitleSlide = this.deleteTitleSlide.bind(this);
     this.togglePreview = this.togglePreview.bind(this);
   }
 
@@ -54,6 +56,12 @@ class MarkdownToBeamer extends Component {
     this.setState({slides: slides});
   }
 
+  deleteSlide(idx){
+    let slides = this.state.slides;
+    slides.splice(idx-1, 1);
+    this.setState({slides: slides});
+  }
+
   saveTitleSlide(slide){
     let newCount = this.state.titleSlideCount + 1;
     this.setState({titleSlideCount: newCount});
@@ -64,6 +72,11 @@ class MarkdownToBeamer extends Component {
     let newCount = this.state.maxTitleSlides;
     this.setState({titleSlideCount: newCount});
     this.setState({titleSlides: [slide]});
+  }
+
+  deleteTitleSlide(){
+    this.setState({titleSlideCount: 0});
+    this.setState({titleSlides: []});
   }
 
 
@@ -86,9 +99,11 @@ class MarkdownToBeamer extends Component {
               slideCount={this.state.slideCount}
               titleSlideCount={this.state.titleSlideCount}
               saveSlide={this.saveSlide}
-              saveTitleSlide={this.saveTitleSlide}
               editSlide={this.editSlide}
+              deleteSlide={this.deleteSlide}
+              saveTitleSlide={this.saveTitleSlide}
               editTitleSlide={this.editTitleSlide}
+              deleteTitleSlide={this.deleteTitleSlide}
               slides={this.state.slides}
               titleSlides={this.state.titleSlides}
             />

@@ -17,12 +17,16 @@ class SlideCreator extends Component {
       currentSlide: {}
     }
 
-    this.saveSlide = this.saveSlide.bind(this);
-    this.saveTitleSlide = this.saveTitleSlide.bind(this);
     this.newSlide = this.newSlide.bind(this);
-    this.newTitleSlite = this.newTitleSlite.bind(this);
-    this.editTitleSlide = this.editTitleSlide.bind(this);
+    this.saveSlide = this.saveSlide.bind(this);
     this.editSlide = this.editSlide.bind(this);
+    this.deleteSlide = this.deleteSlide.bind(this);
+
+    this.newTitleSlite = this.newTitleSlite.bind(this);
+    this.saveTitleSlide = this.saveTitleSlide.bind(this);
+    this.editTitleSlide = this.editTitleSlide.bind(this);
+    this.deleteTitleSlide = this.deleteTitleSlide.bind(this);
+
     this.selectSlide = this.selectSlide.bind(this);
     this.cancelSlide = this.cancelSlide.bind(this);
   }
@@ -37,6 +41,11 @@ class SlideCreator extends Component {
     this.setState({currentSlide: {}});
   }
 
+  deleteSlide(idx){
+    this.props.deleteSlide(idx);
+    this.setState({currentSlide: {}});
+  }
+
   saveTitleSlide(slide){
     this.props.saveTitleSlide(slide);
     this.setState({currentSlide: {}});
@@ -44,6 +53,11 @@ class SlideCreator extends Component {
 
   editTitleSlide(slide){
     this.props.editTitleSlide(slide);
+    this.setState({currentSlide: {}});
+  }
+
+  deleteTitleSlide(){
+    this.props.deleteTitleSlide();
     this.setState({currentSlide: {}});
   }
 
@@ -113,12 +127,12 @@ class SlideCreator extends Component {
             (<div id="slide-editor">
               {slideType === "title" ?
                 titleSlideExists ?
-                  (<TitleSlide saveSlide={this.editTitleSlide} cancelSlide={this.cancelSlide} currentSlide={this.state.currentSlide} />) :
-                  (<TitleSlide saveSlide={this.saveTitleSlide} cancelSlide={this.cancelSlide} currentSlide={this.state.currentSlide} />)
+                  (<TitleSlide saveSlide={this.editTitleSlide} cancelSlide={this.cancelSlide} deleteSlide={this.deleteTitleSlide} currentSlide={this.state.currentSlide} />) :
+                  (<TitleSlide saveSlide={this.saveTitleSlide} cancelSlide={this.cancelSlide} deleteSlide={this.deleteTitleSlide} currentSlide={this.state.currentSlide} />)
                 :
                 this.state.currentSlide.id === 0 ?
-                  (<Slide saveSlide={this.saveSlide} cancelSlide={this.cancelSlide} currentSlide={this.state.currentSlide} />) :
-                  (<Slide saveSlide={this.editSlide} cancelSlide={this.cancelSlide} currentSlide={this.state.currentSlide} />)
+                  (<Slide saveSlide={this.saveSlide} cancelSlide={this.cancelSlide} deleteSlide={this.deleteSlide} currentSlide={this.state.currentSlide} />) :
+                  (<Slide saveSlide={this.editSlide} cancelSlide={this.cancelSlide} deleteSlide={this.deleteSlide} currentSlide={this.state.currentSlide} />)
               }
             </div>)
           }

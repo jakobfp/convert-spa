@@ -62,7 +62,7 @@ class TitleSlide extends Component {
             </tr>
             <tr>
               <td className="btn-td"><button onClick={this.prepareSlide}>Save</button></td>
-              <td className="btn-td"><button onClick={this.props.cancelSlide}>Cancel</button></td>
+              <td className="btn-td"><button onClick={this.props.cancelSlide}>Cancel</button><button onClick={this.props.deleteSlide}>Remove</button></td>
             </tr>
           </tbody>
         </table>

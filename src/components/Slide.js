@@ -63,7 +63,7 @@ class Slide extends Component {
               (<td></td>)}
             </tr>
             <tr>
-              <td className="btn-td"><button onClick={this.prepareSlide}>Save</button><button onClick={this.props.cancelSlide}>Cancel</button></td>
+              <td className="btn-td"><button onClick={this.prepareSlide}>Save</button><button onClick={this.props.cancelSlide}>Cancel</button><button onClick={() => this.props.deleteSlide(this.state.id)}>Remove</button></td>
             </tr>
           </tbody>
         </table>
