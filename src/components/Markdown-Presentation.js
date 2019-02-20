@@ -84,10 +84,14 @@ class MarkdownToBeamer extends Component {
             <SlideCreator
               maxSlides={this.state.maxSlides}
               maxTitleSlides={this.state.maxTitleSlide}
+              slideCount={this.state.slideCount}
+              titleSlideCount={this.state.titleSlideCount}
               saveSlide={this.saveSlide}
               saveTitleSlide={this.saveTitleSlide}
               editSlide={this.editSlide}
               editTitleSlide={this.editTitleSlide}
+              slide={this.state.slides}
+              titleSlides={this.state.titleSlides}
             />
           </div>
         </div>
