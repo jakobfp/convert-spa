@@ -1,0 +1,180 @@
+td {
+  text-align: right;
+}
+
+input {
+  margin-right: 1.5em;
+}
+
+
+textarea {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  width: 23%;
+}
+
+.slidecreator {
+  overflow: auto;
+}
+
+.slidetitel {
+}
+
+.slidecol {
+  margin-right: 2em;
+  height: 15em;
+  width: 15em;
+}
+
+.content-mul{
+    background-color: #FFF;
+    padding: 15px;
+    margin-top: 20px;
+}
+
+.content-mul h2 {
+    padding: 0;
+    margin: 0;
+}
+
+.addButton {
+  float: left;
+  margin-right: 2em;
+  position: relative;
+  display: inline-block;
+  border-width: 2px;
+  border-style: solid;
+  height: 65px;
+  width: 65px;
+  border-radius: 50%;
+  cursor: pointer;
+  background: rgba(118, 185, 0, 0.1);
+}
+.addButton:before,
+.addButton:after {
+  content: "";
+  position: absolute;
+  height: 6px;
+  width: 6px;
+  border-color: rgb(118, 185, 0);
+}
+.addButton:before {
+  border-bottom-width: 3px;
+  border-bottom-style: solid;
+  border-left-width: 3px;
+  border-left-style: solid;
+  left: 14px;
+  top: 8px;
+  border-color: rgb(118, 185, 0);
+}
+.addButton:after {
+  border-top-width: 3px;
+  border-top-style: solid;
+  border-right-width: 3px;
+  border-right-style: solid;
+  left: 8px;
+  top: 14px;
+  border-color: rgb(118, 185, 0);
+}
+.addButton--added {
+  background: rgb(118, 185, 0);
+  border-color: rgb(118, 185, 0);
+}
+.addButton--added:before,
+.addButton--added:after {
+  border-color: #fff;
+}
+.addButton--added:hover {
+  border-color: rgb(118, 185, 0);
+  background: rgba(118, 185, 0, 0.1);
+}
+.addButton--added:hover:before,
+.addButton--added:hover:after {
+  border-color: rgb(118, 185, 0);
+}
+
+.addButton--edit {
+  background: rgb(118, 185, 0);
+  border-color: rgba(0, 0, 0, 0);
+}
+.addButton--edit:before{
+  border-color: rgba(0, 0, 0, 0);
+}
+.addButton--edit:after {
+  border-color: rgba(0, 0, 0, 0);
+}
+.addButton--edit:hover {
+  border-color: rgb(118, 185, 0);
+  background: rgba(118, 185, 0, 0.1);
+}
+.addButton--edit:hover:before{
+  border-color: rgba(0, 0, 0, 0);
+}
+.addButton--edit:hover:after {
+  border-color: rgba(0, 0, 0, 0);
+}
+
+.addButton--active {
+  background: rgb(118, 185, 0);
+  border-color: rgb(118, 185, 0);
+}
+.addButton--active:before{
+  border-color: #fff;
+}
+.addButton--active:after {
+  border-color: #fff;
+}
+.addButton--active:before{
+  border-left-color: rgba(0,0,0,0);
+}
+.addButton--active:after {
+  border-right-color: rgba(0,0,0,0);
+}
+
+.arrow-down {
+  width: 50px;
+  height: 50px;
+  background: rgba(0,0,0,0);
+  position: relative;
+}
+
+.arrow-down.active {
+}
+
+.arrow-down:before, .arrow-down:after {
+  content: "";
+  display: block;
+  width: 20px;
+  height: 5px;
+  background: white;
+  position: absolute;
+  top: 20px;
+  transition: transform .5s;
+}
+
+.arrow-down:before {
+  right: 21px;
+  border-top-left-radius: 10px;
+  border-bottom-left-radius: 10px;
+  transform: rotate(45deg);
+}
+
+.arrow-down:after {
+  right: 10px;
+  transform: rotate(-45deg);
+}
+
+.arrow-down:before {
+
+}
+.arrow-down:after {
+}
+
+.arrow-down.active:before {
+  transform: rotate(-45deg);
+}
+
+.arrow-down.active:after {
+  transform: rotate(45deg);
+}

@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import api from './api-config.js';
 
-import Latex from "./Latex.js"
+import Latex from "./Latex-Files.js"
 
 import {Circle} from 'better-react-spinkit'
 
