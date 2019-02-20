@@ -3,6 +3,7 @@ import api from './api-config.js';
 import "../www/css/md.css";
 
 import {Preview, FormatDate} from "./Preview.js";
+import {Circle} from 'better-react-spinkit';
 import SlideCreator from "./SlideCreator.js";
 
 const open_file = (url) => {
@@ -42,7 +43,8 @@ class MarkdownToBeamer extends Component {
       slideCount: 0,
       titleSlideCount: 0,
       togglePreview: false,
-      togglePreviewArrow: <div className="arrow-down"></div>
+      togglePreviewArrow: <div className="arrow-down"></div>,
+      isLoading: false
     }
     this.saveSlide = this.saveSlide.bind(this);
     this.editSlide = this.editSlide.bind(this);
@@ -102,7 +104,7 @@ class MarkdownToBeamer extends Component {
         date: FormatDate(slide.date, "/")
       }
     });
-
+    this.setState({isLoading: true});
     fetch(api.c_markdown, {
       method: 'POST',
       headers: {
@@ -116,9 +118,11 @@ class MarkdownToBeamer extends Component {
         console.log(response);
         const downloadParams = `file=${response.file_path}`;
         open_file(api.download+downloadParams);
+        this.setState({isLoading: false});
       }
       else {
         console.log(response);
+        this.setState({isLoading: false});
       }
     });
   }
@@ -134,6 +138,7 @@ class MarkdownToBeamer extends Component {
   render() {
     return (
       <div>
+        {this.state.isLoading ? (<div id="loading-spinner"><div className="center-circle"><Circle size={100}/></div></div>) : (<p></p>)}
         <div className="content-mul">
           <div className="slidecreator">
             <SlideCreator
