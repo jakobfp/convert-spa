@@ -2,6 +2,12 @@ import React, { Component } from "react";
 import posed from 'react-pose';
 import "../www/css/md.css"
 
+const FormatDate = (date, sep) => {
+  let d = date.getDate() < 10 ? "0"+date.getDate() : date.getDate();
+  let m = (date.getMonth()+1) < 10 ? "0"+(date.getMonth()+1) : date.getMonth()+1;
+  return d + sep + m + sep + date.getFullYear();
+}
+
 const PreviewListWrapper = posed.div({
   enter: {opacity: 1},
   exit: {opacity: 0}
@@ -18,7 +24,7 @@ const PreviewList = ({titleSlides, slides, pose}) => (
             title: {slide.title}<br/>
             subtitle: {slide.subtitle}<br/>
             author: {slide.author}<br/>
-            date: {slide.date.toJSON().slice(0,10).replace(/-/g,'/')}<br/>
+            date: {FormatDate(slide.date, "/")}<br/>
             ---
           </p>
         </div>
@@ -57,4 +63,4 @@ class Preview extends Component {
   }
 }
 
-export default Preview;
+export {Preview, FormatDate};

@@ -5,7 +5,8 @@ const api = {
   tex: domain + "/convert?",
   docx: domain + "/convert?",
   odt: domain + "/convert?",
-  download: domain + "/download?"
+  download: domain + "/download?",
+  c_markdown: domain + "/markdown"
 };
 
 export default api;

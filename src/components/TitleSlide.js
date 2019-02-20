@@ -34,8 +34,8 @@ class TitleSlide extends Component {
     this.setState({author: event.target.value});
   }
 
-  handleDateChange(event) {
-    this.setState({date: event.target.value});
+  handleDateChange(date) {
+    this.setState({date: date});
   }
 
   prepareSlide(event) {

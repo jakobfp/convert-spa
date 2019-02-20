@@ -1,8 +1,9 @@
 import React, { Component } from "react";
-import "../www/css/md.css"
+import api from './api-config.js';
+import "../www/css/md.css";
 
-import Preview from "./Preview.js"
-import SlideCreator from "./SlideCreator.js"
+import {Preview, FormatDate} from "./Preview.js";
+import SlideCreator from "./SlideCreator.js";
 
 class MarkdownToBeamerHeader extends Component {
 
@@ -37,10 +38,14 @@ class MarkdownToBeamer extends Component {
     this.saveSlide = this.saveSlide.bind(this);
     this.editSlide = this.editSlide.bind(this);
     this.deleteSlide = this.deleteSlide.bind(this);
+
     this.saveTitleSlide = this.saveTitleSlide.bind(this);
     this.editTitleSlide = this.editTitleSlide.bind(this);
     this.deleteTitleSlide = this.deleteTitleSlide.bind(this);
+
     this.togglePreview = this.togglePreview.bind(this);
+
+    this.savePresentation = this.savePresentation.bind(this);
   }
 
 
@@ -79,6 +84,33 @@ class MarkdownToBeamer extends Component {
     this.setState({titleSlides: []});
   }
 
+  savePresentation(){
+    let titleSlides = this.state.titleSlides.map((slide, key) => {
+      return {
+        title: slide.title,
+        subtitle: slide.subtitle,
+        author: slide.author,
+        date: FormatDate(slide.date, "/")
+      }
+    });
+
+    fetch(api.c_markdown, {
+      method: 'POST',
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({"slides": this.state.slides, "titleSlides": titleSlides})
+    })
+    .then(response => response.json())
+    .then(response => {
+      if(response.success === true){
+        console.log(response);
+      }
+      else {
+        console.log(response);
+      }
+    });
+  }
 
   togglePreview(event){
     this.setState({togglePreview: !(this.state.togglePreview)});
@@ -107,6 +139,10 @@ class MarkdownToBeamer extends Component {
               slides={this.state.slides}
               titleSlides={this.state.titleSlides}
             />
+          </div>
+          <br/>
+          <div id="savePresentationButton">
+            <button onClick={this.savePresentation}>Create Presentation</button>
           </div>
         </div>
         <div id="previewToggleArrow" onClick={this.togglePreview}>{this.state.togglePreviewArrow}</div>
