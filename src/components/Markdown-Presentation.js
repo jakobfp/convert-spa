@@ -5,6 +5,15 @@ import "../www/css/md.css";
 import {Preview, FormatDate} from "./Preview.js";
 import SlideCreator from "./SlideCreator.js";
 
+const open_file = (url) => {
+  const link = document.createElement('a');
+  link.href = url;
+  link.setAttribute('target', '_blank');
+  document.body.appendChild(link);
+  link.click();
+  document.body.removeChild(link);
+}
+
 class MarkdownToBeamerHeader extends Component {
 
   render() {
@@ -105,6 +114,8 @@ class MarkdownToBeamer extends Component {
     .then(response => {
       if(response.success === true){
         console.log(response);
+        const downloadParams = `file=${response.file_path}`;
+        open_file(api.download+downloadParams);
       }
       else {
         console.log(response);
