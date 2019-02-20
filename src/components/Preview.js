@@ -24,7 +24,12 @@ class Preview extends Component {
             <div key={slide_key}>
               {slide.title}
               <p>
-                {slide.content.split('\n').map((item, key) => {
+                {slide.col1.split('\n').map((item, key) => {
+                  return <React.Fragment key={key}>{item}<br/></React.Fragment>
+                })}
+              </p>
+              <p>
+                {slide.col2.split('\n').map((item, key) => {
                   return <React.Fragment key={key}>{item}<br/></React.Fragment>
                 })}
               </p>

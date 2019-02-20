@@ -5,11 +5,23 @@ class Slide extends Component {
 
   constructor(props){
     super(props);
-    this.state = {
-      title: "",
-      split: false,
-      col1: "",
-      col2: ""
+
+    if(Object.keys(props.currentSlide).length !== 0){
+      this.state = {
+        id: this.props.currentSlide.id,
+        title: this.props.currentSlide.title,
+        split: this.props.currentSlide.split,
+        col1: this.props.currentSlide.col1,
+        col2: this.props.currentSlide.col2
+      }
+    } else {
+      this.state = {
+        id: 0,
+        title: "",
+        split: false,
+        col1: "",
+        col2: ""
+      }
     }
 
     this.handleTitleChange = this.handleTitleChange.bind(this);
@@ -32,17 +44,15 @@ class Slide extends Component {
   }
 
   toggleColumn(event) {
+    if(this.state.split){
+      this.setState({col2: ""});
+    }
     this.setState({split: !(this.state.split)});
   }
 
   prepareSlide(event) {
-    let slide = {"title": "\n ## " + this.state.title};
-    var content = this.state.col1;
-    if(this.state.split){
-      content = `\\colA{6cm}\n\n${this.state.col1}\n\n\\colB{6cm}\n\n${this.state.col2}\n\n\\colEnd\n\n`;
-    }
-    slide.content = content;
-    this.props.saveSlide(slide);
+    let slide = this.state;
+    this.props.saveSlide(slide, this.state.id-1);
   }
 
   render() {

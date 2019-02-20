@@ -8,8 +8,8 @@ class TitleSlide extends Component {
   constructor(props){
     super(props);
 
-    let today = new Date();//.toJSON().slice(0,10).replace(/-/g,'/');
-    console.log(props);
+    let today = new Date();
+
     if(Object.keys(props.currentSlide).length !== 0){
       this.state = {
         title: this.props.currentSlide.title,

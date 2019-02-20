@@ -26,6 +26,8 @@ class MarkdownToBeamer extends Component {
   constructor(props){
     super(props);
     this.state = {
+      maxSlides: 5,
+      maxTitleSlide: 1,
       slides: [],
       titleSlides: [],
       slideCount: 0,
@@ -34,23 +36,37 @@ class MarkdownToBeamer extends Component {
       togglePreviewArrow: <div className="arrow-down"></div>
     }
     this.saveSlide = this.saveSlide.bind(this);
-    this.togglePreview = this.togglePreview.bind(this);
+    this.editSlide = this.editSlide.bind(this);
     this.saveTitleSlide = this.saveTitleSlide.bind(this);
+    this.editTitleSlide = this.editTitleSlide.bind(this);
+    this.togglePreview = this.togglePreview.bind(this);
   }
+
 
   saveSlide(slide){
     let newCount = this.state.slideCount + 1;
     this.setState({slideCount: newCount});
     this.setState({slides: [...this.state.slides, slide]});
-    this.setState({newSlide: false});
+  }
+
+  editSlide(slide, idx){
+    let slides = this.state.slides;
+    slides[idx] = slide;
+    this.setState({slides: slides});
   }
 
   saveTitleSlide(slide){
     let newCount = this.state.titleSlideCount + 1;
     this.setState({titleSlideCount: newCount});
     this.setState({titleSlides: [...this.state.titleSlides, slide]});
-    this.setState({newTitleSlide: false});
   }
+
+  editTitleSlide(slide){
+    let newCount = this.props.maxTitleSlides;
+    this.setState({titleSlideCount: newCount});
+    this.setState({titleSlides: [slide]});
+  }
+
 
   togglePreview(event){
     this.setState({togglePreview: !(this.state.togglePreview)});
@@ -65,14 +81,24 @@ class MarkdownToBeamer extends Component {
       <div>
         <div className="content-mul">
           <div className="slidecreator">
-            <SlideCreator maxSlides={5} maxTitleSlides={1} saveSlide={this.saveSlide} saveTitleSlide={this.saveTitleSlide}/>
+            <SlideCreator
+              maxSlides={this.state.maxSlides}
+              maxTitleSlides={this.state.maxTitleSlide}
+              saveSlide={this.saveSlide}
+              saveTitleSlide={this.saveTitleSlide}
+              editSlide={this.editSlide}
+              editTitleSlide={this.editTitleSlide}
+            />
           </div>
         </div>
         <div onClick={this.togglePreview}>{this.state.togglePreviewArrow}</div>
         {this.state.togglePreview ?
           (<div className="content-mul">
             <h2>Markdown - Preview</h2>
-            <Preview slides={this.state.slides} titleSlides={this.state.titleSlides} />
+            <Preview
+              slides={this.state.slides}
+              titleSlides={this.state.titleSlides}
+            />
           </div>) : (<p></p>)
         }
       </div>
