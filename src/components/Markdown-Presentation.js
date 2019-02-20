@@ -4,7 +4,6 @@ import "../www/css/md.css"
 import Preview from "./Preview.js"
 import SlideCreator from "./SlideCreator.js"
 
-
 class MarkdownToBeamerHeader extends Component {
 
   render() {
@@ -96,15 +95,11 @@ class MarkdownToBeamer extends Component {
           </div>
         </div>
         <div onClick={this.togglePreview}>{this.state.togglePreviewArrow}</div>
-        {this.state.togglePreview ?
-          (<div className="content-mul">
-            <h2>Markdown - Preview</h2>
-            <Preview
-              slides={this.state.slides}
-              titleSlides={this.state.titleSlides}
-            />
-          </div>) : (<p></p>)
-        }
+        <Preview
+          slides={this.state.slides}
+          titleSlides={this.state.titleSlides}
+          pose={this.state.togglePreview ? 'enter' : 'exit'}
+        />
       </div>
     );
   }

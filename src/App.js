@@ -11,25 +11,27 @@ import {MarkdownToBeamer, MarkdownToBeamerHeader} from "./components/Markdown-Pr
 library.add(faCheckSquare, faTimes)
 
 class App extends Component {
-    render() {
-        return (
-            <Router>
-                <div>
-                    <ul className="header">
-                        <li><NavLink to="/">Home</NavLink></li>
-                        <li><NavLink to="/mdpres">Markdown Presentation</NavLink></li>
-                        <li><NavLink to="/about">About</NavLink></li>
-                    </ul>
-                    <div className="content">
-                        <Route exact path="/" component={Home}/>
-                        <Route exact path="/mdpres" component={MarkdownToBeamerHeader}/>
-                        <Route exact path="/about" component={About}/>
-                    </div>
-                    <Route exact path="/mdpres" component={MarkdownToBeamer}/>
-                </div>
-            </Router>
-        );
-    }
+  render() {
+    return (
+      <Router>
+        <div>
+          <ul className="header">
+            <li><NavLink to="/">Home</NavLink></li>
+            <li><NavLink to="/mdpres">Markdown Presentation</NavLink></li>
+            <li><NavLink to="/about">About</NavLink></li>
+          </ul>
+          <div className="content">
+            <Route exact path="/" component={Home}/>
+            <Route exact path="/mdpres" component={MarkdownToBeamerHeader}/>
+            <Route exact path="/about" component={About}/>
+          </div>
+          <div>
+            <Route exact path="/mdpres" component={MarkdownToBeamer}/>
+          </div>
+        </div>
+      </Router>
+    );
+  }
 }
 
 export default App;
