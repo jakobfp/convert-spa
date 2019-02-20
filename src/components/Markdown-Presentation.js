@@ -27,7 +27,7 @@ class MarkdownToBeamer extends Component {
     super(props);
     this.state = {
       maxSlides: 5,
-      maxTitleSlide: 1,
+      maxTitleSlides: 1,
       slides: [],
       titleSlides: [],
       slideCount: 0,
@@ -62,7 +62,7 @@ class MarkdownToBeamer extends Component {
   }
 
   editTitleSlide(slide){
-    let newCount = this.props.maxTitleSlides;
+    let newCount = this.state.maxTitleSlides;
     this.setState({titleSlideCount: newCount});
     this.setState({titleSlides: [slide]});
   }
@@ -83,14 +83,14 @@ class MarkdownToBeamer extends Component {
           <div className="slidecreator">
             <SlideCreator
               maxSlides={this.state.maxSlides}
-              maxTitleSlides={this.state.maxTitleSlide}
+              maxTitleSlides={this.state.maxTitleSlides}
               slideCount={this.state.slideCount}
               titleSlideCount={this.state.titleSlideCount}
               saveSlide={this.saveSlide}
               saveTitleSlide={this.saveTitleSlide}
               editSlide={this.editSlide}
               editTitleSlide={this.editTitleSlide}
-              slide={this.state.slides}
+              slides={this.state.slides}
               titleSlides={this.state.titleSlides}
             />
           </div>
