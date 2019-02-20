@@ -8,22 +8,11 @@ class TitleSlide extends Component {
   constructor(props){
     super(props);
 
-    let today = new Date();
-
-    if(Object.keys(props.currentSlide).length !== 0){
-      this.state = {
-        title: this.props.currentSlide.title,
-        subtitle: this.props.currentSlide.subtitle,
-        author: this.props.currentSlide.author,
-        date: this.props.currentSlide.date
-      }
-    } else {
-      this.state = {
-        title: "",
-        subtitle: "",
-        author: "",
-        date: today
-      }
+    this.state = {
+      title: this.props.currentSlide.title,
+      subtitle: this.props.currentSlide.subtitle,
+      author: this.props.currentSlide.author,
+      date: this.props.currentSlide.date
     }
 
     this.handleTitleChange = this.handleTitleChange.bind(this);
@@ -31,10 +20,6 @@ class TitleSlide extends Component {
     this.handleAuthorChange = this.handleAuthorChange.bind(this);
     this.handleDateChange = this.handleDateChange.bind(this);
     this.prepareSlide = this.prepareSlide.bind(this);
-  }
-
-  componentDidMount(){
-
   }
 
   handleTitleChange(event) {
@@ -60,7 +45,7 @@ class TitleSlide extends Component {
 
   render() {
     return (
-      <div id="content">
+      <div id="titleslide-editor">
         <table>
           <tbody>
             <tr>
@@ -76,7 +61,8 @@ class TitleSlide extends Component {
               <td><DatePicker id="date" selected={this.state.date} onChange={this.handleDateChange} dateFormat="dd/MM/yyyy" /></td>
             </tr>
             <tr>
-              <td><button onClick={this.prepareSlide}>Save</button></td>
+              <td className="btn-td"><button onClick={this.prepareSlide}>Save</button></td>
+              <td className="btn-td"><button onClick={this.props.cancelSlide}>Cancel</button></td>
             </tr>
           </tbody>
         </table>

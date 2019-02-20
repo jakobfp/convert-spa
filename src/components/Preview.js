@@ -9,6 +9,7 @@ const PreviewListWrapper = posed.div({
 
 const PreviewList = ({titleSlides, slides, pose}) => (
   <PreviewListWrapper pose={pose} className="content-mul">
+    <h2>Markdown - Preview</h2>
     {titleSlides.map((slide, slide_key) => {
       return (
         <div key={slide_key}>
@@ -51,9 +52,7 @@ class Preview extends Component {
       return formattedSlide;
     })
     return (
-      <div id="preview">
-        <PreviewList pose={this.props.pose} titleSlides={this.props.titleSlides} slides={formattedSlides} />
-      </div>
+      <PreviewList pose={this.props.pose} titleSlides={this.props.titleSlides} slides={formattedSlides} />
     );
   }
 }

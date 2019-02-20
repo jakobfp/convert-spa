@@ -50,7 +50,7 @@ class MarkdownToBeamer extends Component {
 
   editSlide(slide, idx){
     let slides = this.state.slides;
-    slides[idx] = slide;
+    slides[idx-1] = slide;
     this.setState({slides: slides});
   }
 
@@ -94,7 +94,7 @@ class MarkdownToBeamer extends Component {
             />
           </div>
         </div>
-        <div onClick={this.togglePreview}>{this.state.togglePreviewArrow}</div>
+        <div id="previewToggleArrow" onClick={this.togglePreview}>{this.state.togglePreviewArrow}</div>
         <Preview
           slides={this.state.slides}
           titleSlides={this.state.titleSlides}

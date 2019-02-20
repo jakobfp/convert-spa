@@ -24,6 +24,7 @@ class SlideCreator extends Component {
     this.editTitleSlide = this.editTitleSlide.bind(this);
     this.editSlide = this.editSlide.bind(this);
     this.selectSlide = this.selectSlide.bind(this);
+    this.cancelSlide = this.cancelSlide.bind(this);
   }
 
   saveSlide(slide){
@@ -59,6 +60,10 @@ class SlideCreator extends Component {
     this.setState({currentSlide: slide});
   }
 
+  cancelSlide(){
+    this.setState({currentSlide: {}});
+  }
+
   render() {
 
     let titleSlideExists = this.props.titleSlideCount >= this.props.maxTitleSlides;
@@ -75,7 +80,6 @@ class SlideCreator extends Component {
       <div>
         <h2>Create a simple presentation</h2>
         <p>Add a title page and up to five slides! Click on them again to edit. <br/>Toggle the preview to check to generated Markdown text.</p>
-        <br/>
         <div className="editor">
           {!(slideSelected) ?
             (<div id="slide-buttons">
@@ -109,12 +113,12 @@ class SlideCreator extends Component {
             (<div id="slide-editor">
               {slideType === "title" ?
                 titleSlideExists ?
-                  (<TitleSlide saveSlide={this.editTitleSlide} currentSlide={this.state.currentSlide} />) :
-                  (<TitleSlide saveSlide={this.saveTitleSlide} currentSlide={this.state.currentSlide} />)
+                  (<TitleSlide saveSlide={this.editTitleSlide} cancelSlide={this.cancelSlide} currentSlide={this.state.currentSlide} />) :
+                  (<TitleSlide saveSlide={this.saveTitleSlide} cancelSlide={this.cancelSlide} currentSlide={this.state.currentSlide} />)
                 :
                 this.state.currentSlide.id === 0 ?
-                  (<Slide saveSlide={this.saveSlide} currentSlide={this.state.currentSlide} />) :
-                  (<Slide saveSlide={this.editSlide} currentSlide={this.state.currentSlide} />)
+                  (<Slide saveSlide={this.saveSlide} cancelSlide={this.cancelSlide} currentSlide={this.state.currentSlide} />) :
+                  (<Slide saveSlide={this.editSlide} cancelSlide={this.cancelSlide} currentSlide={this.state.currentSlide} />)
               }
             </div>)
           }

@@ -6,22 +6,12 @@ class Slide extends Component {
   constructor(props){
     super(props);
 
-    if(Object.keys(props.currentSlide).length !== 0){
-      this.state = {
-        id: this.props.currentSlide.id,
-        title: this.props.currentSlide.title,
-        split: this.props.currentSlide.split,
-        col1: this.props.currentSlide.col1,
-        col2: this.props.currentSlide.col2
-      }
-    } else {
-      this.state = {
-        id: 0,
-        title: "",
-        split: false,
-        col1: "",
-        col2: ""
-      }
+    this.state = {
+      id: this.props.currentSlide.id,
+      title: this.props.currentSlide.title,
+      split: this.props.currentSlide.split,
+      col1: this.props.currentSlide.col1,
+      col2: this.props.currentSlide.col2
     }
 
     this.handleTitleChange = this.handleTitleChange.bind(this);
@@ -52,7 +42,7 @@ class Slide extends Component {
 
   prepareSlide(event) {
     let slide = this.state;
-    this.props.saveSlide(slide, this.state.id-1);
+    this.props.saveSlide(slide, this.state.id);
   }
 
   render() {
@@ -72,11 +62,11 @@ class Slide extends Component {
               (<td><button className="addButton addButton--active" onClick={this.toggleColumn}>remove column</button></td>) :
               (<td></td>)}
             </tr>
+            <tr>
+              <td className="btn-td"><button onClick={this.prepareSlide}>Save</button><button onClick={this.props.cancelSlide}>Cancel</button></td>
+            </tr>
           </tbody>
         </table>
-        <div id="save">
-          <button className="saveButton" onClick={this.prepareSlide}>Save</button>
-        </div>
       </div>
     );
   }
