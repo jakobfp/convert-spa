@@ -234,9 +234,7 @@ button.create-button{
 }
 
 #addimagemodal{
-  align-items: center;
-  justify-content: center;
-  display: flex;
+  justify-content: left;
 }
 
 .shade {
@@ -251,7 +249,7 @@ button.create-button{
 }
 
 .modal {
-  position: fixed;
+  position: absolute;
   background: rgba(118, 185, 0, 1);
   width: 350px;
   height: 130px;

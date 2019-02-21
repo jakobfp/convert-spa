@@ -91,10 +91,10 @@ class SlideCreator extends Component {
     }
 
     return (
-      <div>
+      <div id="slide-creator">
         <h2>Create a simple presentation</h2>
         <p>Add a title page and up to five slides! Click on them again to edit. <br/>Toggle the preview to check to generated Markdown text.</p>
-        <div className="editor">
+        <div id="slide editor" className="editor">
           {!(slideSelected) ?
             (<div id="slide-buttons">
               {!(titleSlideExists) ?

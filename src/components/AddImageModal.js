@@ -15,7 +15,7 @@ const Modal = posed.div({
     }
   },
   exit: {
-    y: 100,
+    y: 50,
     opacity: 0,
     delay: 0,
     transition: { duration: 150 }

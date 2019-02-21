@@ -14,11 +14,11 @@ const PreviewListWrapper = posed.div({
 });
 
 const PreviewList = ({titleSlides, slides, pose}) => (
-  <PreviewListWrapper pose={pose} className="content-mul">
+  <PreviewListWrapper id="preview-list-wrapper" pose={pose} className="content-mul">
     <h2>Markdown - Preview</h2>
-    {titleSlides.map((slide, slide_key) => {
+    {titleSlides.map((slide, index) => {
       return (
-        <div key={slide_key}>
+        <div key={index} id={index+"t"}>
           <p>
             ---<br/>
             title: {slide.title}<br/>
@@ -31,13 +31,13 @@ const PreviewList = ({titleSlides, slides, pose}) => (
       )
     })}
 
-    {slides.map((slide, slide_key) => {
+    {slides.map((slide, index) => {
       return (
-        <div key={slide_key}>
+        <div key={index} id={index+"s"}>
           {slide.title}
           <p>
             {slide.content.split('\n').map((item, key) => {
-              return <React.Fragment key={key}>{item}<br/></React.Fragment>
+              return <React.Fragment key={key} id={key+"e"}>{item}<br/></React.Fragment>
             })}
           </p>
         </div>
@@ -58,7 +58,7 @@ class Preview extends Component {
       return formattedSlide;
     })
     return (
-      <PreviewList pose={this.props.pose} titleSlides={this.props.titleSlides} slides={formattedSlides} />
+      <PreviewList id="preview-list" pose={this.props.pose} titleSlides={this.props.titleSlides} slides={formattedSlides} />
     );
   }
 }

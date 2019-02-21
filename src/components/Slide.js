@@ -74,14 +74,14 @@ class Slide extends Component {
 
   render() {
     return (
-      <div id="slidecontent">
+      <div id="regular-slide-editor">
         <div id="addimagemodal">
           <AddImageModal isVisible={this.state.showImageModal} hideModal={this.hideModal} col={this.state.imageAddIn} addImageUrl={this.addImageUrl}/>
         </div>
         <label>Title</label><br/><input id="content-title" className="slidetitel" type="text" size="35" value={this.state.title} onChange={this.handleTitleChange}/>
         <br/>
         <label>Content</label> <br/>
-        <table id="columns">
+        <table id="slide-content">
           <tbody>
             <tr>
               <td className="btn-td"><button className="htw-button" title="Add an image" id="image-col1" onClick={() => this.newImage("col1")}><FontAwesomeIcon icon={faImage} /></button></td>

@@ -23,7 +23,7 @@ class MarkdownToBeamerHeader extends Component {
         <h2>How to use Markdown to create PDF slides</h2>
         <p>
           Use this tool to create a simple and short presentation in HTW Berlin design! No need for downloading PowerPoint-templates and struggle with those!<br/>
-          Learn here how to write in Markdown and convert it to PDF slides.
+          It is designed to motivate you to learn basic markdown syntax for the future!
         </p>
       </div>
     );
@@ -139,7 +139,7 @@ class MarkdownToBeamer extends Component {
 
   render() {
     return (
-      <div>
+      <div id="create-presentation-wrapper">
         {this.state.isLoading ? (<div id="loading-spinner"><div className="center-circle"><Circle size={100}/></div></div>) : (<p></p>)}
         <div className="content-mul">
           <div className="slidecreator">
