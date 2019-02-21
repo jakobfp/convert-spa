@@ -75,6 +75,8 @@ class MarkdownToBeamer extends Component {
   deleteSlide(idx){
     let slides = this.state.slides;
     slides.splice(idx-1, 1);
+    let newCount = this.state.slideCount - 1;
+    this.setState({slideCount: newCount});
     this.setState({slides: slides});
   }
 
@@ -158,7 +160,7 @@ class MarkdownToBeamer extends Component {
           </div>
           <br/>
           <div id="savePresentationButton">
-            <button onClick={this.savePresentation}>Create Presentation</button>
+            <button className="create-button" title="Will create and download the presentation" onClick={this.savePresentation}>Create Presentation</button>
           </div>
         </div>
         <div id="previewToggleArrow" onClick={this.togglePreview}>{this.state.togglePreviewArrow}</div>

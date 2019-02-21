@@ -98,19 +98,19 @@ class SlideCreator extends Component {
           {!(slideSelected) ?
             (<div id="slide-buttons">
               {!(titleSlideExists) ?
-                  (<button className="addButton addButton--added" onClick={this.newTitleSlite}>Titel page</button>)
+                  (<button className="addButton addButton--added" title="Create title page" onClick={this.newTitleSlite}>Titel page</button>)
                  : (<div></div>)
               }
 
               {!(allSlidesExists) ?
-                  (<button className="addButton addButton--added" onClick={this.newSlide}>Slide</button>)
+                  (<button className="addButton addButton--added" title="Create a new slide" onClick={this.newSlide}>Slide</button>)
                  : (<div></div>)
               }
 
               {this.props.titleSlides.map((slide, slide_key) => {
                 return (
                   <div key={slide_key}>
-                    <button className="addButton addButton--edit" onClick={() => this.selectSlide(slide, slide_key+1)}>titel</button>
+                    <button className="addButton addButton--edit" title="Edit title page" onClick={() => this.selectSlide(slide, slide_key+1)}>titel</button>
                   </div>
                 )
               })}
@@ -118,7 +118,7 @@ class SlideCreator extends Component {
               {this.props.slides.map((slide, slide_key) => {
                 return (
                   <div key={slide_key}>
-                      <button className="addButton addButton--edit" onClick={() => this.selectSlide(slide, slide_key+1)}>{slide_key+1}</button>
+                      <button className="addButton addButton--edit" title="Edit this slide" onClick={() => this.selectSlide(slide, slide_key+1)}>{slide_key+1}</button>
                   </div>
                 )
               })}
