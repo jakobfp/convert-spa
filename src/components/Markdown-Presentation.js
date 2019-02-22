@@ -5,6 +5,7 @@ import "../www/css/md.css";
 import {Preview, FormatDate} from "./Preview.js";
 import {Circle} from 'better-react-spinkit';
 import SlideCreator from "./SlideCreator.js";
+import MarkdownTutorial from "./MarkdownTutorial.js";
 
 const open_file = (url) => {
   const link = document.createElement('a');
@@ -141,6 +142,7 @@ class MarkdownToBeamer extends Component {
     return (
       <div id="create-presentation-wrapper">
         {this.state.isLoading ? (<div id="loading-spinner"><div className="center-circle"><Circle size={100}/></div></div>) : (<p></p>)}
+        <MarkdownTutorial />
         <div className="content-mul">
           <div className="slidecreator">
             <SlideCreator

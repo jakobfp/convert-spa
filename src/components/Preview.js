@@ -1,6 +1,9 @@
 import React, { Component } from "react";
-import posed from 'react-pose';
+import ReactMarkdown from 'react-markdown';
+
 import "../www/css/md.css"
+
+const {AnimatedWrapper} = require('./animation/EnterExit.js');
 
 const FormatDate = (date, sep) => {
   let d = date.getDate() < 10 ? "0"+date.getDate() : date.getDate();
@@ -8,14 +11,9 @@ const FormatDate = (date, sep) => {
   return d + sep + m + sep + date.getFullYear();
 }
 
-const PreviewListWrapper = posed.div({
-  enter: {opacity: 1},
-  exit: {opacity: 0}
-});
-
-const PreviewList = ({titleSlides, slides, pose}) => (
-  <PreviewListWrapper id="preview-list-wrapper" pose={pose} className="content-mul">
-    <h2>Markdown - Preview</h2>
+const RawPreview = ({titleSlides, slides, pose}) => (
+  <AnimatedWrapper id="raw-preview-wrapper" pose={pose} className="content-mul">
+    <h2>Raw - Preview</h2>
     {titleSlides.map((slide, index) => {
       return (
         <div key={index} id={index+"t"}>
@@ -37,13 +35,21 @@ const PreviewList = ({titleSlides, slides, pose}) => (
           {slide.title}
           <p>
             {slide.content.split('\n').map((item, key) => {
-              return <React.Fragment key={key} id={key+"e"}>{item}<br/></React.Fragment>
+              return <React.Fragment key={key}>{item}<br/></React.Fragment>
             })}
           </p>
         </div>
       )
     })}
-  </PreviewListWrapper>
+  </AnimatedWrapper>
+);
+// <MarkdownPreview id="rmarkdown-preview" pose={this.props.pose} source={markdownString.join('')}/>
+
+const MarkdownPreview = ({pose, source}) => (
+  <AnimatedWrapper id="markdown-preview-wrapper" pose={pose} className="content-mul">
+    <h2>Converted - Preview</h2>
+    <ReactMarkdown source={source}/>
+  </AnimatedWrapper>
 );
 
 class Preview extends Component {
@@ -56,9 +62,15 @@ class Preview extends Component {
       }
       formattedSlide.content = content;
       return formattedSlide;
-    })
+    });
+    const markdownString = formattedSlides.map((slide, key) => {
+      let string = "\n## " + slide.title + "\n" + slide.content + "\n";
+      return string;
+    });
     return (
-      <PreviewList id="preview-list" pose={this.props.pose} titleSlides={this.props.titleSlides} slides={formattedSlides} />
+      <div id="preview-wrapper">
+        <RawPreview id="raw-preview" pose={this.props.pose} titleSlides={this.props.titleSlides} slides={formattedSlides} />
+      </div>
     );
   }
 }

@@ -44,6 +44,7 @@ input.slidetitel {
   margin-top: 20px;
 }
 
+
 .content-mul h2 {
   padding: 0;
   margin: 0;
@@ -291,4 +292,21 @@ input.url{
   color: white;
   padding: 2px;
   cursor: pointer;
+}
+
+#tutorial-wrapper{
+  overflow: hidden;
+}
+
+#raw{
+  margrin-right: 50px;
+  float:right;
+}
+
+#markdown {
+  float:left;
+}
+
+#rawTut{
+  white-space:pre-wrap;
 }
