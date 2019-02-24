@@ -46,6 +46,8 @@ class MarkdownToBeamer extends Component {
       titleSlides: [],
       slideCount: 0,
       titleSlideCount: 0,
+      outline: false,
+      tySlide: false,
       togglePreview: false,
       toggleHelp: false,
       togglePreviewArrow: <div className="arrow-down"></div>,
@@ -58,6 +60,9 @@ class MarkdownToBeamer extends Component {
     this.saveTitleSlide = this.saveTitleSlide.bind(this);
     this.editTitleSlide = this.editTitleSlide.bind(this);
     this.deleteTitleSlide = this.deleteTitleSlide.bind(this);
+
+    this.handleOutLineChange = this.handleOutLineChange.bind(this);
+    this.handleTyChange = this.handleTyChange.bind(this);
 
     this.togglePreview = this.togglePreview.bind(this);
     this.toggleHelpChange = this.toggleHelpChange.bind(this);
@@ -103,6 +108,14 @@ class MarkdownToBeamer extends Component {
     this.setState({titleSlides: []});
   }
 
+  handleOutLineChange(event){
+    this.setState({outline: !this.state.outline});
+  }
+
+  handleTyChange(event){
+    this.setState({tySlide: !this.state.tySlide});
+  }
+
   savePresentation(){
     let titleSlides = this.state.titleSlides.map((slide, key) => {
       return {
@@ -118,7 +131,7 @@ class MarkdownToBeamer extends Component {
       headers: {
         "Content-Type": "application/json"
       },
-      body: JSON.stringify({"slides": this.state.slides, "titleSlides": titleSlides})
+      body: JSON.stringify({"slides": this.state.slides, "titleSlides": titleSlides, "outline": this.state.outline, "ty": this.state.tySlide})
     })
     .then(response => response.json())
     .then(response => {
@@ -181,6 +194,8 @@ class MarkdownToBeamer extends Component {
             />
           </div>
           <br/>
+          <label><input type="checkbox" checked={this.state.outline} onChange={this.handleOutLineChange} />Outline</label>
+          <label><input type="checkbox" checked={this.state.tySlide} onChange={this.handleTyChange} />ThankYou-Slide</label>
           <div id="savePresentationButton">
             <button className="create-button" title="Will create and download the presentation" onClick={this.savePresentation}>Create Presentation</button>
           </div>
