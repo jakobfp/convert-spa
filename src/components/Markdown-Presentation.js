@@ -6,6 +6,9 @@ import {Preview, FormatDate} from "./Preview.js";
 import {Circle} from 'better-react-spinkit';
 import SlideCreator from "./SlideCreator.js";
 import MarkdownTutorial from "./MarkdownTutorial.js";
+import { PoseGroup } from 'react-pose';
+
+const {Modal, Shade} = require('./animation/EnterExit.js');
 
 const open_file = (url) => {
   const link = document.createElement('a');
@@ -44,6 +47,7 @@ class MarkdownToBeamer extends Component {
       slideCount: 0,
       titleSlideCount: 0,
       togglePreview: false,
+      toggleHelp: false,
       togglePreviewArrow: <div className="arrow-down"></div>,
       isLoading: false
     }
@@ -56,6 +60,7 @@ class MarkdownToBeamer extends Component {
     this.deleteTitleSlide = this.deleteTitleSlide.bind(this);
 
     this.togglePreview = this.togglePreview.bind(this);
+    this.toggleHelpChange = this.toggleHelpChange.bind(this);
 
     this.savePresentation = this.savePresentation.bind(this);
   }
@@ -138,11 +143,26 @@ class MarkdownToBeamer extends Component {
       this.setState({togglePreviewArrow: <div className="arrow-down"></div>})
   }
 
+  toggleHelpChange(event){
+    this.setState({toggleHelp: !(this.state.toggleHelp)});
+  }
+
   render() {
     return (
       <div id="create-presentation-wrapper">
-        {this.state.isLoading ? (<div id="loading-spinner"><div className="center-circle"><Circle size={100}/></div></div>) : (<p></p>)}
-        <MarkdownTutorial />
+        {this.state.isLoading ? (<div id="loading-spinner"><div className="center-circle"><Circle size={100}/></div></div>) : (<div></div>)}
+        <button onClick={this.toggleHelpChange} className="htw-button">Show help</button>
+        <PoseGroup>
+          {this.state.toggleHelp && [
+            // If animating more than one child, each needs a `key`
+            <Shade key="shade" className="shade" onClick={this.toggleHelpChange}/>,
+            <Modal key="modal" className="modal">
+              <div className="tut-wrap">
+                <MarkdownTutorial />
+              </div>
+            </Modal>
+          ]}
+        </PoseGroup>
         <div className="content-mul">
           <div className="slidecreator">
             <SlideCreator
@@ -166,11 +186,14 @@ class MarkdownToBeamer extends Component {
           </div>
         </div>
         <div id="previewToggleArrow" onClick={this.togglePreview}>{this.state.togglePreviewArrow}</div>
-        <Preview
-          slides={this.state.slides}
-          titleSlides={this.state.titleSlides}
-          pose={this.state.togglePreview ? 'enter' : 'exit'}
-        />
+        <PoseGroup>
+          <Preview
+            key="preview"
+            slides={this.state.slides}
+            titleSlides={this.state.titleSlides}
+            pose={this.state.togglePreview ? 'enter' : 'exit'}
+          />
+        </PoseGroup>
       </div>
     );
   }

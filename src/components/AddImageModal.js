@@ -1,31 +1,10 @@
 import React from 'react';
-import posed, { PoseGroup } from 'react-pose';
+import { PoseGroup } from 'react-pose';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowRight } from '@fortawesome/free-solid-svg-icons';
 import '../www/css/md.css';
 
-const Modal = posed.div({
-  enter: {
-    y: 0,
-    opacity: 1,
-    delay: 300,
-    transition: {
-      y: { type: 'spring', stiffness: 500, damping: 15 },
-      default: { duration: 300 }
-    }
-  },
-  exit: {
-    y: 50,
-    opacity: 0,
-    delay: 0,
-    transition: { duration: 150 }
-  }
-});
-
-const Shade = posed.div({
-  enter: { opacity: 1 },
-  exit: { opacity: 0, transition: { duration: 1 } }
-});
+const {SmallModal, Shade} = require('./animation/EnterExit.js');
 
 class AddImageModal extends React.Component {
 
@@ -52,7 +31,7 @@ class AddImageModal extends React.Component {
         {this.props.isVisible && [
           // If animating more than one child, each needs a `key`
           <Shade key="shade" className="shade" onClick={this.props.hideModal}/>,
-          <Modal key="modal" className="modal">
+          <SmallModal key="modal" className="modal">
             <div id="inputForm" className="urlForm">
               <div className="urlLabel">
                 <label> Enter the URL of the image you want to add!</label>
@@ -64,7 +43,7 @@ class AddImageModal extends React.Component {
                 <FontAwesomeIcon icon={faArrowRight} id="setUrlButton"/>
               </div>
             </div>
-          </Modal>
+          </SmallModal>
         ]}
       </PoseGroup>
     );

@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import ReactMarkdown from 'react-markdown';
 
 import "../www/css/md.css"
 
@@ -43,14 +42,7 @@ const RawPreview = ({titleSlides, slides, pose}) => (
     })}
   </AnimatedWrapper>
 );
-// <MarkdownPreview id="rmarkdown-preview" pose={this.props.pose} source={markdownString.join('')}/>
 
-const MarkdownPreview = ({pose, source}) => (
-  <AnimatedWrapper id="markdown-preview-wrapper" pose={pose} className="content-mul">
-    <h2>Converted - Preview</h2>
-    <ReactMarkdown source={source}/>
-  </AnimatedWrapper>
-);
 
 class Preview extends Component {
   render() {
@@ -62,10 +54,6 @@ class Preview extends Component {
       }
       formattedSlide.content = content;
       return formattedSlide;
-    });
-    const markdownString = formattedSlides.map((slide, key) => {
-      let string = "\n## " + slide.title + "\n" + slide.content + "\n";
-      return string;
     });
     return (
       <div id="preview-wrapper">
