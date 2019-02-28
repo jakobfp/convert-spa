@@ -97,15 +97,6 @@ class SlideCreator extends Component {
         <div id="slide editor" className="editor">
           {!(slideSelected) ?
             (<div id="slide-buttons">
-              {!(titleSlideExists) ?
-                  (<button className="addButton addButton--added" title="Create title page" onClick={this.newTitleSlite}>Titel page</button>)
-                 : (<div></div>)
-              }
-
-              {!(allSlidesExists) ?
-                  (<button className="addButton addButton--added" title="Create a new slide" onClick={this.newSlide}>Slide</button>)
-                 : (<div></div>)
-              }
 
               {this.props.titleSlides.map((slide, slide_key) => {
                 return (
@@ -122,6 +113,16 @@ class SlideCreator extends Component {
                   </div>
                 )
               })}
+
+              {!(titleSlideExists) ?
+                  (<button className="addButton addButton--added" title="Create title page" onClick={this.newTitleSlite}>Titel page</button>)
+                 : (<div></div>)
+              }
+
+              {!(allSlidesExists) ?
+                  (<button className="addButton addButton--added" title="Create a new slide" onClick={this.newSlide}>Slide</button>)
+                 : (<div></div>)
+              }
             </div>) :
 
             (<div id="slide-editor">

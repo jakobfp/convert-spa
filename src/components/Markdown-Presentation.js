@@ -49,7 +49,7 @@ class MarkdownToBeamer extends Component {
       outline: false,
       tySlide: false,
       togglePreview: false,
-      toggleHelp: false,
+      toggleMdHelp: false,
       togglePreviewArrow: <div className="arrow-down"></div>,
       isLoading: false
     }
@@ -65,7 +65,7 @@ class MarkdownToBeamer extends Component {
     this.handleTyChange = this.handleTyChange.bind(this);
 
     this.togglePreview = this.togglePreview.bind(this);
-    this.toggleHelpChange = this.toggleHelpChange.bind(this);
+    this.toggleMdHelpChange = this.toggleMdHelpChange.bind(this);
 
     this.savePresentation = this.savePresentation.bind(this);
   }
@@ -156,19 +156,19 @@ class MarkdownToBeamer extends Component {
       this.setState({togglePreviewArrow: <div className="arrow-down"></div>})
   }
 
-  toggleHelpChange(event){
-    this.setState({toggleHelp: !(this.state.toggleHelp)});
+  toggleMdHelpChange(event){
+    this.setState({toggleMdHelp: !(this.state.toggleMdHelp)});
   }
 
   render() {
     return (
       <div id="create-presentation-wrapper">
         {this.state.isLoading ? (<div id="loading-spinner"><div className="center-circle"><Circle size={100}/></div></div>) : (<div></div>)}
-        <button onClick={this.toggleHelpChange} className="htw-button">Show help</button>
+        <button onClick={this.toggleMdHelpChange} className="htw-button">Show Markdown Help</button>
         <PoseGroup>
-          {this.state.toggleHelp && [
+          {this.state.toggleMdHelp && [
             // If animating more than one child, each needs a `key`
-            <Shade key="shade" className="shade" onClick={this.toggleHelpChange}/>,
+            <Shade key="shade" className="shade" onClick={this.toggleMdHelpChange}/>,
             <Modal key="modal" className="modal">
               <div className="tut-wrap">
                 <MarkdownTutorial />
@@ -195,7 +195,6 @@ class MarkdownToBeamer extends Component {
           </div>
           <br/>
           <label><input type="checkbox" checked={this.state.outline} onChange={this.handleOutLineChange} />Outline</label>
-          <label><input type="checkbox" checked={this.state.tySlide} onChange={this.handleTyChange} />ThankYou-Slide</label>
           <div id="savePresentationButton">
             <button className="create-button" title="Will create and download the presentation" onClick={this.savePresentation}>Create Presentation</button>
           </div>

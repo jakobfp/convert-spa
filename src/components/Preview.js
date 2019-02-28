@@ -12,7 +12,7 @@ const FormatDate = (date, sep) => {
 
 const RawPreview = ({titleSlides, slides, pose}) => (
   <AnimatedWrapper id="raw-preview-wrapper" pose={pose} className="content-mul">
-    <h2>Raw - Preview</h2>
+    <h2>Presentation-Markdown - Preview</h2>
     {titleSlides.map((slide, index) => {
       return (
         <div key={index} id={index+"t"}>
