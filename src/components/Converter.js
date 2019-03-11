@@ -15,7 +15,7 @@ const download_file = (url, name) => {
   document.body.removeChild(link);
 }
 
-class Home extends Component {
+class Converter extends Component {
 
   constructor(props) {
     super(props);
@@ -158,4 +158,4 @@ class Home extends Component {
   }
 }
 
-export default Home;
+export default Converter;
