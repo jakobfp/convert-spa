@@ -9,13 +9,13 @@ This web application provides two main functionalities:
 * learn markdown by creating simple presentations online
 * convert documents to PDF, while applying the HTW Berlin [corporate design](https://www.google.com/search?client=firefox-b-d&q=htw+berlin+corporate+design)
 
-##### Presentations using markdown
-<img src="imgs/markdown-presentation.png" alt="markdown-presentation" width="600"/><br>
+### Presentations using markdown
+<img src="imgs/markdown-presentation.png" alt="markdown-presentation" width="800"/><br>
 *Fig. 1: The Presenation-Creation-Tool*<br>
 The tool for creating small presentations aims to give bachelor students of lower semesters an understanding of the basic syntax of [markdown](https://daringfireball.net/projects/markdown/syntax). Instead of just showing or explaining the syntax to the user, the user can create a small PDF presentation using the syntax. The possible scope of the presentations, which can be created using this tool, is suitable for AWE-courses or to illustrate achieved exercises as part of different courses.
 
-##### Conversion with corporate design
-<img src="imgs/conversion.png" alt="conversion" width="600"/><br>
+### Conversion with corporate design
+<img src="imgs/conversion.png" alt="conversion" width="800"/><br>
 *Fig. 2: The Conversion-Tool*<br>
 The conversion tool is based on the idea to provide a possibility for professors or lecture speaker to use their default presentations slides or scripts at different universities directly in the corporate design of the university. So far only a conversion to the HTW Berlin corporate design is possible.
 
@@ -23,18 +23,18 @@ The conversion tool is based on the idea to provide a possibility for professors
 
 ### Try the markdown syntax
 Click on the ***Show Markdown Help*** button to try markdown yourself. The opened view provides an editor box and the live output of the rendered markdown to track the changes.<br>
-<img src="imgs/mp-help.png" alt="mp-help" width="600"/><br>
+<img src="imgs/mp-help.png" alt="mp-help" width="800"/><br>
 *Fig. 3: The Try-Yourself-Markdown-Help-Box*<br>
 
 ### Step-by-Step to the presentation
 
 #### 1. Title Slide
 The title slide will be the first slide in the presentation. It contains a *title*, a *subtitle*, the *author* and the *date*, which all can be set. The *title*, *author* and *date* are shown on all slides (beside the title slide) in the footer.<br>
-###### Create
+##### Create
 To create a title slide click on the green, round button **Title page**. This will show input fields for the mentioned contents. After setting them one can save (check-mark), cancel (cross) or delete (bin) the title page. <br>
 <img src="imgs/mp-titlepage-new.png" alt="titlepage-new" width="80"/> &rarr; <img src="imgs/mp-titlepage-fields.png" alt="titlepage-fields" width="310"/><br>
 *Fig. 4: Create a title page*<br>
-###### Edit
+##### Edit
 Canceling or deleting makes more sense if one is editing the slide. To edit the title slide (after saving it for the first time) click on the green, round button **title** and the input fields with the set contents will be shown.<br>
 <img src="imgs/mp-titlepage-edit.png" alt="titlepage-edit" width="80"/> &rarr; <img src="imgs/mp-titlepage-fields-filled.png" alt="titlepage-fields-filled" width="310"/><br>
 *Fig. 5: Edit/delete a title page*<br>
@@ -61,10 +61,10 @@ In the slide editor the user can set a *title* and edit the *content* of the sli
 After creating/editing the slide one can save (check-mark), cancel (cross) or delete (bin) the slide.<br>
 The slides should not be overfilled with content, e.g. put images on separate slides or at least in the second column.
 ###### Add a column
-<img src="imgs/mp-slide-content.png" alt="slide-content" width="170"/> &rarr; <img src="imgs/mp-slide-content2-filled.png" alt="slide-content2-filled" width="310"/><br>
+<img src="imgs/mp-slide-content.png" alt="slide-content" width="270"/> &rarr; <img src="imgs/mp-slide-content2-filled.png" alt="slide-content2-filled" width="410"/><br>
 *Fig. 9: Add a column (and content)*<br><br>
 ###### Add an image
-<img src="imgs/mp-slide-addimage-box.png" alt="slide-addimage-box" width="170"/> &rarr; <img src="imgs/mp-slide-addedimage.png" alt="slide-addedimage" width="210"/><br>
+<img src="imgs/mp-slide-addimage-box.png" alt="slide-addimage-box" width="270"/> &rarr; <img src="imgs/mp-slide-addedimage.png" alt="slide-addedimage" width="410"/><br>
 *Fig. 10: Add an image*<br><br>
 #### Create the presentation
 To create and download the presentation, the **Create Presentation** button has to be clicked. Optionally an outline slide (on second position) can be included.
