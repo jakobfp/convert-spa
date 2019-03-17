@@ -9,6 +9,10 @@ The application communicates with a [RestAPI](https://github.com/jakobfp/pandocw
 
 It is not currently deployed anywhere.
 
+## Userguide
+
+Checkout the [userguide](docs/USERGUIDE.md)
+
 ## Development
 
 Get the [PandocWrapper-API](https://github.com/jakobfp/pandocwrapper-api) & the [Pandoc-Wrapper](https://github.com/jakobfp/pandocwrapper). <br>
