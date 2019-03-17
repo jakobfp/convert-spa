@@ -3,20 +3,27 @@
 Version 1.0<br>
 © Jakob Pfeiffer
 
+## Content
+- [Introduction](#Introduction)
+- [Create Presentations using markdown](#Create-Presentations-using-markdown)
+  - [Examples](#Example-outputs)
+- [Convert documents to PDF applying a CI](#Convert-documents-to-PDF-applying-a-CI)
+  - [Examples](#Example-Conversion)
+
 ## Introduction
 
 This web application provides two main functionalities:
 * learn markdown by creating simple presentations online
-* convert documents to PDF, while applying the HTW Berlin [corporate design](https://www.google.com/search?client=firefox-b-d&q=htw+berlin+corporate+design)
+* convert documents to PDF, while applying the [HTW Berlin corporate design](https://www.google.com/search?client=firefox-b-d&q=htw+berlin+corporate+design)
 
 ### Presentations using markdown
 <img src="imgs/markdown-presentation.png" alt="markdown-presentation" width="800"/><br>
-*Fig. 1: The Presenation-Creation-Tool*<br>
+*Fig. 1: The Presenation-Creation-Tool*<br><br>
 The tool for creating small presentations aims to give bachelor students of lower semesters an understanding of the basic syntax of [markdown](https://daringfireball.net/projects/markdown/syntax). Instead of just showing or explaining the syntax to the user, the user can create a small PDF presentation using the syntax. The possible scope of the presentations, which can be created using this tool, is suitable for AWE-courses or to illustrate achieved exercises as part of different courses.
 
 ### Conversion with corporate design
 <img src="imgs/conversion.png" alt="conversion" width="800"/><br>
-*Fig. 2: The Conversion-Tool*<br>
+*Fig. 2: The Conversion-Tool*<br><br>
 The conversion tool is based on the idea to provide a possibility for professors or lecture speaker to use their default presentations slides or scripts at different universities directly in the corporate design of the university. So far only a conversion to the HTW Berlin corporate design is possible.
 
 ## Create Presentations using markdown
@@ -103,7 +110,7 @@ Supported corporate designs:
 ### Upload a file
 Select a file on your computer to upload and convert:<br>
 <img src="imgs/conv-uploadfile.png" alt="uploadfile" width="290"/> &rarr; <img src="imgs/conv-uploadfile-success.png" alt="slide-addedimage" width="300"/><br>
-*Fig. 18: Upload a file (of supported type)*<br>
+*Fig. 18: Upload a file (of supported type)*<br><br><br>
 If the file type is not supported a error message will be displayed.<br>
 The file (as well the `bib`-file) can be reuploaded resp. changed.
 
@@ -123,3 +130,7 @@ After uploading all necessary files, the document can be converted and downloade
 <img src="imgs/conv-finish.png" alt="finish" width="200"/><br>
 *Fig. 20: Convert and download the file*<br><br>
 A window offering to open or download the converted file will be shown.
+
+### Example Conversion
+<img src="imgs/conv-example-docx-input.png" alt="slide-addimage-box" width="310"/> &rarr; <img src="imgs/conv-example-docx-output.png" alt="slide-addedimage" width="300"/><br>
+*Fig. 21: Example conversion of a word file*<br><br>
