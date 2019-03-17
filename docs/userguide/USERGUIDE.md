@@ -61,13 +61,14 @@ In the slide editor the user can set a *title* and edit the *content* of the sli
 After creating/editing the slide one can save (check-mark), cancel (cross) or delete (bin) the slide.<br>
 The slides should not be overfilled with content, e.g. put images on separate slides or at least in the second column.
 ###### Add a column
-<img src="imgs/mp-slide-content.png" alt="slide-content" width="270"/> &rarr; <img src="imgs/mp-slide-content2-filled.png" alt="slide-content2-filled" width="410"/><br>
+<img src="imgs/mp-slide-content.png" alt="slide-content" width="270"/> &rarr; <img src="imgs/mp-slide-content2-filled.png" alt="slide-content2-filled" width="490"/><br>
 *Fig. 9: Add a column (and content)*<br><br>
 ###### Add an image
 <img src="imgs/mp-slide-addimage-box.png" alt="slide-addimage-box" width="270"/> &rarr; <img src="imgs/mp-slide-addedimage.png" alt="slide-addedimage" width="410"/><br>
 *Fig. 10: Add an image*<br><br>
 #### Create the presentation
-To create and download the presentation, the **Create Presentation** button has to be clicked. Optionally an outline slide (on second position) can be included.
+To create and download the presentation, the **Create Presentation** button has to be clicked. Optionally an outline slide (on second position) can be included.<br>
+A window offering to open or download the presentation will be shown.
 ##### Markdown-Preview
 To help the understanding of markdown syntax in order to create a presentation, the user can preview the created markdown before converting to PDF-slides. Therefore the user has to click on the small white arrow at the bottom of the page:<br>
 <img src="imgs/mp-slide-preview.png" alt="slide-preview" width="300"/><br>
@@ -86,3 +87,39 @@ To help the understanding of markdown syntax in order to create a presentation, 
 *Fig. 16: Example for creating a slide with an image*<br><br>
 <img src="imgs/mp-slide-example-last.png" alt="slide-example-last" width="600"/><br>
 *Fig. 17: The last slide (added by default)*<br><br>
+
+## Convert documents to PDF applying a CI
+
+Supported document types:
+  * `tex`
+    * images: `jpg`, `png`, `pdf`
+    * bibliography: `bib`
+  * `docx`
+  * `odt`
+
+Supported corporate designs:
+  * [HTW Berlin](https://www.google.com/search?client=firefox-b-d&q=htw+berlin+corporate+design)
+
+### Upload a file
+Select a file on your computer to upload and convert:<br>
+<img src="imgs/conv-uploadfile.png" alt="uploadfile" width="290"/> &rarr; <img src="imgs/conv-uploadfile-success.png" alt="slide-addedimage" width="300"/><br>
+*Fig. 18: Upload a file (of supported type)*<br>
+If the file type is not supported a error message will be displayed.<br>
+The file (as well the `bib`-file) can be reuploaded resp. changed.
+
+#### Special case: `.tex` file
+When uploading a Latex-file, additionally options will be displayed:
+  * uploading a `.bib`-file for bibliography (via files on computer)
+  * uploading images which are used inside the document (via dropzone, the user can drop the images in the dropzone)
+
+Images can not be deleted, but, as well as all other files, they will be deleted from the server right after conversion.<br>
+**Important is that in the Latex-script the images are referenced with only the name and not the full or relative path**
+
+<img src="imgs/conv-uploadfile-latex-ext.png" alt="uploadfile-latex-ex" width="700"/><br>
+*Fig. 19: Additional upload for `.tex`-file conversion*<br><br>
+
+### Convert & download
+After uploading all necessary files, the document can be converted and downloaded:<br><br>
+<img src="imgs/conv-finish.png" alt="finish" width="200"/><br>
+*Fig. 20: Convert and download the file*<br><br>
+A window offering to open or download the converted file will be shown.
