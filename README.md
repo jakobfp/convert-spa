@@ -11,7 +11,7 @@ It is not currently deployed anywhere.
 
 ## Userguide
 
-Checkout the [userguide](docs/USERGUIDE.md)
+Checkout the [userguide](docs/userguide/USERGUIDE.md)
 
 ## Development
 
