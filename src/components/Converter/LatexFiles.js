@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import api from './api-config.js';
+import api from '../../api-config.js';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 

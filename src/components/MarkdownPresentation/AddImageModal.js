@@ -2,9 +2,8 @@ import React from 'react';
 import { PoseGroup } from 'react-pose';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowRight } from '@fortawesome/free-solid-svg-icons';
-import '../www/css/md.css';
 
-const {SmallModal, Shade} = require('./animation/EnterExit.js');
+const {SmallModal, Shade} = require('../../animation/EnterExit.js');
 
 class AddImageModal extends React.Component {
 

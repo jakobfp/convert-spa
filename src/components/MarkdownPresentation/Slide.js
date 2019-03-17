@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCheck, faTrash, faTimes, faImage } from '@fortawesome/free-solid-svg-icons';
-import "../www/css/md.css"
 
 import AddImageModal from "./AddImageModal.js"
 

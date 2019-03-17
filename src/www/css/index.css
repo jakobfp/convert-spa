@@ -57,7 +57,7 @@ ul.header li a {
     color: #FFF;
     font-weight: bold;
     text-decoration: none;
-    padding: 20px;
+    margin: 20px;
     display: inline-block;
     background-color: #0000;
 }

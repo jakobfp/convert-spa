@@ -1,6 +1,6 @@
 import React, { Component } from "react";
-import api from './api-config.js';
-import "../www/css/md.css";
+import api from '../../api-config.js';
+import '../../www/css/md.css';
 
 import {Preview, FormatDate} from "./Preview.js";
 import {Circle} from 'better-react-spinkit';
@@ -8,7 +8,7 @@ import SlideCreator from "./SlideCreator.js";
 import MarkdownTutorial from "./MarkdownTutorial.js";
 import { PoseGroup } from 'react-pose';
 
-const {Modal, Shade} = require('./animation/EnterExit.js');
+const {Modal, Shade} = require('../../animation/EnterExit.js');
 
 const open_file = (url) => {
   const link = document.createElement('a');

@@ -1,7 +1,5 @@
 import React, { Component } from "react";
 
-import "../www/css/md.css";
-
 import Slide from "./Slide.js";
 import TitleSlide from "./TitleSlide.js";
 

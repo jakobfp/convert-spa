@@ -1,8 +1,6 @@
 import React, { Component } from "react";
 
-import "../www/css/md.css"
-
-const {AnimatedWrapper} = require('./animation/EnterExit.js');
+const {AnimatedWrapper} = require('../../animation/EnterExit.js');
 
 const FormatDate = (date, sep) => {
   let d = date.getDate() < 10 ? "0"+date.getDate() : date.getDate();
