@@ -18,5 +18,7 @@ Checkout the [userguide](docs/userguide/USERGUIDE.md)
 Get the [PandocWrapper-API](https://github.com/jakobfp/pandocwrapper-api) & the [Pandoc-Wrapper](https://github.com/jakobfp/pandocwrapper). <br>
 Follow the instructions in the REAMDE files to set up the RestAPI.
 
+Use `$ npm install` to install node dependencies.
+
 Use `$ npm start` to start this app in development mode.<br>
 Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
