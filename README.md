@@ -1,5 +1,7 @@
 # HTW CorDes
 
+**Created for a university course**
+
 Single-Page-Application that
 
 1. provides a tool to create simple presentations using the markdown language (designed for people who want to learn the basic syntax of markdown).
