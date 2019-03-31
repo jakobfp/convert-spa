@@ -1,6 +1,6 @@
 # HTW CorDes
 
-**Created for a university course**
+**Created for an university course at HTW BERLIN.**
 
 Single-Page-Application that
 
